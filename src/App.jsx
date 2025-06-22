@@ -1,15 +1,15 @@
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
-import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="bg-white dark:bg-gray-900 min-h-screen flex flex-col">
+    <div className="min-h-screen bg-white dark:bg-dark-950 text-dark-900 dark:text-white">
       <Navbar />
-      <main className="flex-1 pt-16">
+      <main className="pt-20">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />

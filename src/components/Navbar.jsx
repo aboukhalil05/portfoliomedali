@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
   Menu, 
   X, 
   Sun, 
   Moon, 
-  Globe, 
-  ChevronDown,
+  Globe,
   Code,
   Home,
   FolderOpen,
@@ -69,11 +68,11 @@ const Navbar = () => {
       animate={{ y: 0 }}
       className={`fixed w-full top-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-white/80 dark:bg-dark-900/80 backdrop-blur-lg shadow-soft' 
+          ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg shadow-lg' 
           : 'bg-transparent'
       }`}
     >
-      <div className="container-custom">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <motion.div 
@@ -82,10 +81,10 @@ const Navbar = () => {
             whileTap={{ scale: 0.95 }}
           >
             <Link to="/" className="flex items-center space-x-3 group">
-              <div className="w-10 h-10 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-2xl flex items-center justify-center shadow-glow-primary group-hover:shadow-glow-secondary transition-all duration-300">
+              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
                 <Code className="w-6 h-6 text-white" />
               </div>
-              <span className="text-2xl font-bold font-display gradient-text">
+              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Portfolio
               </span>
             </Link>
@@ -106,22 +105,14 @@ const Navbar = () => {
                 >
                   <Link
                     to={item.path}
-                    className={`flex items-center space-x-2 px-4 py-2 rounded-2xl font-medium transition-all duration-300 group ${
+                    className={`flex items-center space-x-2 px-4 py-2 rounded-2xl font-medium transition-all duration-300 ${
                       isActive
-                        ? 'bg-primary-500 text-white shadow-glow-primary'
-                        : 'text-dark-700 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20'
+                        ? 'bg-blue-500 text-white shadow-lg'
+                        : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20'
                     }`}
                   >
                     <Icon className="w-5 h-5" />
                     <span>{item.label}</span>
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeTab"
-                        className="absolute inset-0 bg-primary-500 rounded-2xl -z-10"
-                        initial={false}
-                        transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                      />
-                    )}
                   </Link>
                 </motion.div>
               );
@@ -137,7 +128,7 @@ const Navbar = () => {
               <select
                 onChange={(e) => changeLanguage(e.target.value)}
                 value={i18n.language}
-                className="appearance-none bg-white dark:bg-dark-800 border border-dark-200 dark:border-dark-600 rounded-2xl px-4 py-2 pr-10 text-sm font-medium focus:ring-4 focus:ring-primary-500/20 focus:border-primary-500 transition-all duration-300 cursor-pointer"
+                className="appearance-none bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-2xl px-4 py-2 pr-10 text-sm font-medium focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 cursor-pointer"
               >
                 {languages.map((lang) => (
                   <option key={lang.code} value={lang.code}>
@@ -145,13 +136,13 @@ const Navbar = () => {
                   </option>
                 ))}
               </select>
-              <Globe className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-dark-400 pointer-events-none" />
+              <Globe className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
             </motion.div>
 
             {/* Theme Toggle */}
             <motion.button
               onClick={toggleTheme}
-              className="p-3 rounded-2xl bg-white dark:bg-dark-800 border border-dark-200 dark:border-dark-600 hover:bg-primary-50 dark:hover:bg-primary-900/20 hover:border-primary-500 dark:hover:border-primary-400 transition-all duration-300 group"
+              className="p-3 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, y: -20 }}
@@ -161,7 +152,7 @@ const Navbar = () => {
               {isDark ? (
                 <Sun className="w-5 h-5 text-yellow-500 group-hover:rotate-90 transition-transform duration-300" />
               ) : (
-                <Moon className="w-5 h-5 text-dark-600 group-hover:rotate-90 transition-transform duration-300" />
+                <Moon className="w-5 h-5 text-gray-600 group-hover:rotate-90 transition-transform duration-300" />
               )}
             </motion.button>
           </div>
@@ -169,61 +160,61 @@ const Navbar = () => {
           {/* Mobile menu button */}
           <motion.button
             onClick={toggleMenu}
-            className="lg:hidden p-3 rounded-2xl bg-white dark:bg-dark-800 border border-dark-200 dark:border-dark-600 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all duration-300"
+            className="lg:hidden p-3 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             {isMenuOpen ? (
-              <X className="w-6 h-6 text-dark-700 dark:text-dark-300" />
+              <X className="w-6 h-6 text-gray-700 dark:text-gray-300" />
             ) : (
-              <Menu className="w-6 h-6 text-dark-700 dark:text-dark-300" />
+              <Menu className="w-6 h-6 text-gray-700 dark:text-gray-300" />
             )}
           </motion.button>
         </div>
 
         {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden overflow-hidden"
-            >
-              <div className="py-6 space-y-4 border-t border-dark-200 dark:border-dark-700">
-                {navItems.map((item, index) => {
-                  const Icon = item.icon;
-                  const isActive = location.pathname === item.path;
-                  
-                  return (
-                    <motion.div
-                      key={item.path}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <Link
-                        to={item.path}
-                        onClick={() => setIsMenuOpen(false)}
-                        className={`flex items-center space-x-3 px-4 py-3 rounded-2xl font-medium transition-all duration-300 ${
-                          isActive
-                            ? 'bg-primary-500 text-white shadow-glow-primary'
-                            : 'text-dark-700 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20'
-                        }`}
-                      >
-                        <Icon className="w-5 h-5" />
-                        <span>{item.label}</span>
-                      </Link>
-                    </motion.div>
-                  );
-                })}
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="lg:hidden overflow-hidden bg-white dark:bg-gray-800 rounded-2xl mt-4 shadow-lg border border-gray-200 dark:border-gray-700"
+          >
+            <div className="py-6 space-y-4 px-6">
+              {navItems.map((item, index) => {
+                const Icon = item.icon;
+                const isActive = location.pathname === item.path;
                 
-                {/* Mobile Language and Theme */}
-                <div className="flex items-center justify-between pt-4 border-t border-dark-200 dark:border-dark-700">
+                return (
+                  <motion.div
+                    key={item.path}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Link
+                      to={item.path}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={`flex items-center space-x-3 w-full px-4 py-3 rounded-2xl font-medium transition-all duration-300 ${
+                        isActive
+                          ? 'bg-blue-500 text-white'
+                          : 'text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/20'
+                      }`}
+                    >
+                      <Icon className="w-5 h-5" />
+                      <span>{item.label}</span>
+                    </Link>
+                  </motion.div>
+                );
+              })}
+              
+              <div className="border-t border-gray-200 dark:border-gray-700 pt-4 space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Langue</span>
                   <select
                     onChange={(e) => changeLanguage(e.target.value)}
                     value={i18n.language}
-                    className="flex-1 mr-4 appearance-none bg-white dark:bg-dark-800 border border-dark-200 dark:border-dark-600 rounded-2xl px-4 py-2 pr-10 text-sm font-medium focus:ring-4 focus:ring-primary-500/20 focus:border-primary-500 transition-all duration-300"
+                    className="bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg px-3 py-1 text-sm"
                   >
                     {languages.map((lang) => (
                       <option key={lang.code} value={lang.code}>
@@ -231,22 +222,23 @@ const Navbar = () => {
                       </option>
                     ))}
                   </select>
-                  
-                  <button
-                    onClick={toggleTheme}
-                    className="p-3 rounded-2xl bg-white dark:bg-dark-800 border border-dark-200 dark:border-dark-600 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all duration-300"
-                  >
-                    {isDark ? (
-                      <Sun className="w-5 h-5 text-yellow-500" />
-                    ) : (
-                      <Moon className="w-5 h-5 text-dark-600" />
-                    )}
-                  </button>
                 </div>
+                
+                <button
+                  onClick={toggleTheme}
+                  className="flex items-center justify-between w-full px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-2xl transition-all duration-300"
+                >
+                  <span className="text-sm font-medium">Thème</span>
+                  {isDark ? (
+                    <Sun className="w-5 h-5 text-yellow-500" />
+                  ) : (
+                    <Moon className="w-5 h-5 text-gray-600" />
+                  )}
+                </button>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            </div>
+          </motion.div>
+        )}
       </div>
     </motion.nav>
   );

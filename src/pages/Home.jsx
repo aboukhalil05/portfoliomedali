@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import Hero from '../components/Hero';
+import { Code, Database, Rocket } from 'lucide-react';
 
 const Home = () => {
   const { t } = useTranslation();
@@ -9,7 +10,7 @@ const Home = () => {
       <Hero />
       
       {/* About Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
+      <section className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -22,8 +23,10 @@ const Home = () => {
 
           {/* Skills Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl">
-              <div className="text-4xl mb-4">🎨</div>
+            <div className="text-center p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 dark:bg-blue-900/20 rounded-2xl mb-4">
+                <Code className="w-8 h-8 text-blue-600" />
+              </div>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                 Frontend
               </h3>
@@ -32,8 +35,10 @@ const Home = () => {
               </p>
             </div>
             
-            <div className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl">
-              <div className="text-4xl mb-4">⚙️</div>
+            <div className="text-center p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 dark:bg-green-900/20 rounded-2xl mb-4">
+                <Database className="w-8 h-8 text-green-600" />
+              </div>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                 Backend
               </h3>
@@ -42,8 +47,10 @@ const Home = () => {
               </p>
             </div>
             
-            <div className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl">
-              <div className="text-4xl mb-4">🚀</div>
+            <div className="text-center p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-purple-100 dark:bg-purple-900/20 rounded-2xl mb-4">
+                <Rocket className="w-8 h-8 text-purple-600" />
+              </div>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                 DevOps
               </h3>

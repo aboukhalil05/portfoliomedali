@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,7 +10,6 @@
   
   body {
     font-family: 'Inter', system-ui, sans-serif;
-    @apply bg-white dark:bg-dark-950 text-dark-900 dark:text-white;
   }
 
   /* RTL Support for Arabic */
@@ -22,20 +21,16 @@
 @layer components {
   /* Custom Button Styles */
   .btn-primary {
-    @apply bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-glow focus:outline-none focus:ring-4 focus:ring-primary-500/20;
+    @apply bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-primary-500/20;
   }
 
   .btn-secondary {
-    @apply bg-white dark:bg-dark-800 border-2 border-primary-500 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 font-semibold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-soft focus:outline-none focus:ring-4 focus:ring-primary-500/20;
-  }
-
-  .btn-outline {
-    @apply border-2 border-dark-300 dark:border-dark-600 text-dark-700 dark:text-dark-300 hover:border-primary-500 dark:hover:border-primary-400 hover:text-primary-600 dark:hover:text-primary-400 font-semibold py-4 px-8 rounded-2xl transition-all duration-300;
+    @apply bg-white dark:bg-gray-800 border-2 border-primary-500 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 font-semibold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-primary-500/20;
   }
 
   /* Card Styles */
   .card {
-    @apply bg-white dark:bg-dark-800 rounded-2xl shadow-soft hover:shadow-xl transition-all duration-300 border border-dark-100 dark:border-dark-700;
+    @apply bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700;
   }
 
   .card-hover {
@@ -58,19 +53,17 @@
 
   /* Gradient Text */
   .gradient-text {
-    @apply bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary-500 to-blue-600 bg-clip-text text-transparent;
   }
 
   /* Glass Effect */
   .glass {
-    @apply bg-white/10 dark:bg-dark-800/10 backdrop-blur-lg border border-white/20 dark:border-dark-700/20;
+    @apply bg-white/10 dark:bg-gray-800/10 backdrop-blur-lg border border-white/20 dark:border-gray-700/20;
   }
 
   /* Animated Background */
   .animated-bg {
-    @apply bg-gradient-to-br from-primary-50 via-white to-secondary-50 dark:from-dark-950 dark:via-dark-900 dark:to-dark-800;
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
+    @apply bg-gradient-to-br from-primary-50 via-white to-blue-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800;
   }
 }
 
@@ -78,10 +71,6 @@
   /* Text Gradients */
   .text-gradient-primary {
     @apply bg-gradient-to-r from-primary-500 to-primary-600 bg-clip-text text-transparent;
-  }
-
-  .text-gradient-secondary {
-    @apply bg-gradient-to-r from-secondary-500 to-secondary-600 bg-clip-text text-transparent;
   }
 
   /* Custom Shadows */
@@ -133,7 +122,7 @@
 
 /* Selection styles */
 ::selection {
-  @apply bg-primary-500/20 text-primary-900 dark:text-primary-100;
+  @apply bg-primary-500/20 text-primary-900;
 }
 
 /* Custom animations for specific elements */
@@ -146,20 +135,6 @@
 }
 
 /* Responsive typography */
-@media (max-width: 640px) {
-  .text-responsive {
-    font-size: clamp(1.5rem, 5vw, 3rem);
-  }
-}
-
-@media (min-width: 641px) and (max-width: 1024px) {
-  .text-responsive {
-    font-size: clamp(2rem, 4vw, 4rem);
-  }
-}
-
-@media (min-width: 1025px) {
-  .text-responsive {
-    font-size: clamp(3rem, 3vw, 5rem);
-  }
+.text-responsive {
+  font-size: clamp(2rem, 5vw, 4rem);
 }

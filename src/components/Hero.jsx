@@ -3,77 +3,23 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   ArrowRight, 
-  Download, 
   Github, 
   Linkedin, 
   Mail,
   Code,
-  Zap,
-  Palette,
   Database,
-  Globe,
-  Smartphone
+  Globe
 } from 'lucide-react';
 
 const Hero = () => {
   const { t } = useTranslation();
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  const floatingVariants = {
-    animate: {
-      y: [-10, 10, -10],
-      transition: {
-        duration: 4,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-    },
-  };
-
-  const techIcons = [
-    { icon: Code, label: "React", color: "text-blue-500" },
-    { icon: Zap, label: "Node.js", color: "text-green-500" },
-    { icon: Database, label: "MongoDB", color: "text-green-600" },
-    { icon: Palette, label: "Tailwind", color: "text-cyan-500" },
-    { icon: Globe, label: "TypeScript", color: "text-blue-600" },
-    { icon: Smartphone, label: "Mobile", color: "text-purple-500" },
-  ];
-
-  const socialLinks = [
-    { icon: Github, href: "https://github.com", label: "GitHub", color: "hover:text-gray-900 dark:hover:text-white" },
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn", color: "hover:text-blue-600" },
-    { icon: Mail, href: "mailto:contact@portfolio.com", label: "Email", color: "hover:text-red-500" },
-  ];
-
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden animated-bg">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Gradient Orbs */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      {/* Background Effects */}
+      <div className="absolute inset-0">
         <motion.div
-          className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-primary-400/30 to-secondary-400/30 rounded-full blur-3xl"
+          className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-3xl"
           animate={{
             x: [0, 100, 0],
             y: [0, -50, 0],
@@ -85,7 +31,7 @@ const Hero = () => {
           }}
         />
         <motion.div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r from-secondary-400/20 to-primary-400/20 rounded-full blur-3xl"
+          className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r from-purple-400/20 to-blue-400/20 rounded-full blur-3xl"
           animate={{
             x: [0, -80, 0],
             y: [0, 60, 0],
@@ -96,83 +42,72 @@ const Hero = () => {
             ease: "easeInOut",
           }}
         />
-        
-        {/* Tech Pattern */}
-        <div className="absolute inset-0 bg-tech-pattern opacity-5" />
-        
-        {/* Floating Elements */}
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary-500 rounded-full"
-          variants={floatingVariants}
-          animate="animate"
-        />
-        <motion.div
-          className="absolute top-1/3 right-1/3 w-3 h-3 bg-secondary-500 rounded-full"
-          variants={floatingVariants}
-          animate="animate"
-          transition={{ delay: 1 }}
-        />
-        <motion.div
-          className="absolute bottom-1/3 left-1/3 w-1 h-1 bg-primary-400 rounded-full"
-          variants={floatingVariants}
-          animate="animate"
-          transition={{ delay: 2 }}
-        />
       </div>
 
-      <div className="relative z-10 container-custom">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="text-center max-w-5xl mx-auto"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center"
         >
           {/* Badge */}
           <motion.div
-            variants={itemVariants}
-            className="inline-flex items-center space-x-2 bg-white/10 dark:bg-dark-800/10 backdrop-blur-lg border border-white/20 dark:border-dark-700/20 rounded-full px-6 py-3 mb-8"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center space-x-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-full px-6 py-3 mb-8 shadow-lg"
           >
-            <div className="w-2 h-2 bg-primary-500 rounded-full animate-pulse" />
-            <span className="text-sm font-medium text-dark-700 dark:text-dark-300">
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
               Disponible pour de nouveaux projets
             </span>
           </motion.div>
 
           {/* Main Title */}
           <motion.h1
-            variants={itemVariants}
-            className="text-responsive font-bold font-display mb-6 leading-tight"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
           >
-            <span className="text-dark-900 dark:text-white">
+            <span className="text-gray-900 dark:text-white">
               {t('hero.title')}
             </span>
             <br />
-            <span className="gradient-text">
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               {t('hero.subtitle')}
             </span>
           </motion.h1>
 
           {/* Description */}
           <motion.p
-            variants={itemVariants}
-            className="text-xl lg:text-2xl text-dark-600 dark:text-dark-300 mb-12 max-w-4xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed"
           >
             {t('hero.description')}
           </motion.p>
 
           {/* CTA Buttons */}
           <motion.div
-            variants={itemVariants}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
           >
-            <Link to="/projects" className="btn-primary group">
+            <Link 
+              to="/projects" 
+              className="inline-flex items-center bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg group"
+            >
               <span>{t('hero.cta')}</span>
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
             
             <a
               href="#contact"
-              className="btn-secondary group"
+              className="inline-flex items-center bg-white dark:bg-gray-800 border-2 border-blue-600 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 font-semibold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg group"
             >
               <span>{t('nav.contact')}</span>
               <Mail className="w-5 h-5 ml-2 group-hover:scale-110 transition-transform duration-300" />
@@ -181,73 +116,64 @@ const Hero = () => {
 
           {/* Tech Stack */}
           <motion.div
-            variants={itemVariants}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
             className="mb-16"
           >
-            <p className="text-sm font-medium text-dark-500 dark:text-dark-400 mb-6 uppercase tracking-wider">
+            <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-6 uppercase tracking-wider">
               Technologies principales
             </p>
             <div className="flex flex-wrap justify-center gap-6">
-              {techIcons.map((tech, index) => (
-                <motion.div
-                  key={tech.label}
-                  className="flex flex-col items-center space-y-2 group"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <div className="w-12 h-12 bg-white dark:bg-dark-800 rounded-2xl shadow-soft flex items-center justify-center group-hover:shadow-glow transition-all duration-300">
-                    <tech.icon className={`w-6 h-6 ${tech.color}`} />
-                  </div>
-                  <span className="text-xs font-medium text-dark-600 dark:text-dark-400">
-                    {tech.label}
-                  </span>
-                </motion.div>
-              ))}
+              <div className="flex flex-col items-center space-y-2 group">
+                <div className="p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110">
+                  <Code className="w-8 h-8 text-blue-500" />
+                </div>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">React</span>
+              </div>
+              <div className="flex flex-col items-center space-y-2 group">
+                <div className="p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110">
+                  <Database className="w-8 h-8 text-green-500" />
+                </div>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Node.js</span>
+              </div>
+              <div className="flex flex-col items-center space-y-2 group">
+                <div className="p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110">
+                  <Globe className="w-8 h-8 text-purple-500" />
+                </div>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Full Stack</span>
+              </div>
             </div>
           </motion.div>
 
           {/* Social Links */}
           <motion.div
-            variants={itemVariants}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7 }}
             className="flex justify-center space-x-6"
           >
-            {socialLinks.map((social, index) => (
-              <motion.a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 bg-white dark:bg-dark-800 rounded-2xl shadow-soft flex items-center justify-center hover:shadow-glow transition-all duration-300 group"
-                whileHover={{ scale: 1.1, y: -5 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <social.icon className={`w-5 h-5 text-dark-600 dark:text-dark-400 transition-colors duration-300 ${social.color}`} />
-              </motion.a>
-            ))}
+            <a
+              href="https://github.com"
+              className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+            >
+              <Github className="w-6 h-6" />
+            </a>
+            <a
+              href="https://linkedin.com"
+              className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 text-gray-600 dark:text-gray-400 hover:text-blue-600"
+            >
+              <Linkedin className="w-6 h-6" />
+            </a>
+            <a
+              href="mailto:contact@portfolio.com"
+              className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 text-gray-600 dark:text-gray-400 hover:text-red-500"
+            >
+              <Mail className="w-6 h-6" />
+            </a>
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <div className="w-6 h-10 border-2 border-dark-300 dark:border-dark-600 rounded-full flex justify-center">
-          <motion.div
-            className="w-1 h-3 bg-primary-500 rounded-full mt-2"
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </div>
-      </motion.div>
     </section>
   );
 };
