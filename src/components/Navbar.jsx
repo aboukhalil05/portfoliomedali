@@ -1,16 +1,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { MdDarkMode, MdLightMode } from 'react-icons/md';
 import { FiGlobe, FiMenu, FiX } from 'react-icons/fi';
-
-const navLinks = [
-  { label: 'Accueil', to: '#home' },
-  { label: 'À propos', to: '#about' },
-  { label: 'Formation', to: '#parcours' },
-  { label: 'Compétences', to: '#skills' },
-  { label: 'Projets', to: '#projects' },
-  { label: 'Contact', to: '#contact' },
-];
 
 const languages = [
   { code: 'fr', label: 'FR' },
@@ -19,10 +11,20 @@ const languages = [
 ];
 
 export default function Navbar() {
+  const { t, i18n } = useTranslation();
+  
+  const navLinks = [
+    { label: t('nav.home', 'Accueil'), to: '#home' },
+    { label: t('nav.about', 'À propos'), to: '#about' },
+    { label: t('nav.formation', 'Formation'), to: '#parcours' },
+    { label: t('nav.skills', 'Compétences'), to: '#skills' },
+    { label: t('nav.projects', 'Projets'), to: '#projects' },
+    { label: t('nav.contact', 'Contact'), to: '#contact' },
+  ];
+
   const [isDark, setIsDark] = useState(() => document.documentElement.classList.contains('dark'));
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
-  const [lang, setLang] = useState('fr');
   const [activeLink, setActiveLink] = useState('#home');
   const [hoveredLink, setHoveredLink] = useState(null);
   const [hoveredMobileLink, setHoveredMobileLink] = useState(null);
@@ -37,7 +39,7 @@ export default function Navbar() {
 
   // Language change
   const handleLang = (code) => {
-    setLang(code);
+    i18n.changeLanguage(code);
     setLangOpen(false);
   };
 
@@ -167,7 +169,7 @@ export default function Navbar() {
                 >
                   <FiGlobe size={18} />
                 </motion.div>
-                <span className="font-bold text-sm">{languages.find((l) => l.code === lang)?.label}</span>
+                <span className="font-bold text-sm">{languages.find((l) => l.code === i18n.language)?.label}</span>
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-[#00C896]/20 to-[#007BFF]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"
                 />
@@ -187,7 +189,7 @@ export default function Navbar() {
                         key={l.code}
                         onClick={() => handleLang(l.code)}
                         className={`w-full text-left px-4 py-3 text-sm font-semibold transition-all duration-300 hover:bg-gradient-to-r hover:from-[#00C896]/10 hover:to-[#007BFF]/10 ${
-                          lang === l.code 
+                          i18n.language === l.code 
                             ? 'text-[#007BFF] dark:text-[#00C896] bg-gradient-to-r from-[#007BFF]/5 to-[#00C896]/5' 
                             : 'text-gray-700 dark:text-gray-300 hover:text-[#00C896] dark:hover:text-[#007BFF]'
                         }`}
@@ -282,4 +284,4 @@ export default function Navbar() {
       </div>
     </motion.nav>
   );
-} 
+}

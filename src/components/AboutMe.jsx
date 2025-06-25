@@ -41,10 +41,10 @@ const AboutMe = () => {
           {/* Header */}
           <motion.div variants={fadeInUp} className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-6">
-              À propos de <span className="bg-gradient-to-r from-[#007BFF] to-[#00C896] bg-clip-text text-transparent">moi</span>
+              {t('about.title', 'À propos de')} <span className="bg-gradient-to-r from-[#007BFF] to-[#00C896] bg-clip-text text-transparent">{t('about.titleHighlight', 'moi')}</span>
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Passionné par le développement web et les nouvelles technologies
+              {t('about.subtitle', 'Passionné par le développement web et les nouvelles technologies')}
             </p>
           </motion.div>
 
@@ -61,8 +61,7 @@ const AboutMe = () => {
                   {t('about.description', 'Développeur passionné avec une expertise en technologies modernes. J\'aime créer des solutions innovantes qui allient performance, esthétique et expérience utilisateur exceptionnelle.')}
                 </p>
                 <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
-                  Spécialisé dans le développement web moderne avec React, Laravel et les dernières technologies. 
-                  Je transforme les idées en applications web performantes et élégantes.
+                  {t('about.specialization', 'Spécialisé dans le développement web moderne avec React, Laravel et les dernières technologies. Je transforme les idées en applications web performantes et élégantes.')}
                 </p>
               </div>
 
@@ -73,7 +72,7 @@ const AboutMe = () => {
                   className="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-200/50 dark:border-gray-700/50 hover:shadow-lg transition-all duration-300"
                 >
                   <div className="text-3xl font-black text-[#007BFF] mb-2">20</div>
-                  <div className="text-gray-600 dark:text-gray-300 font-semibold">Ans</div>
+                  <div className="text-gray-600 dark:text-gray-300 font-semibold">{t('about.age', 'Ans')}</div>
                 </motion.div>
 
                 <motion.div 
@@ -81,17 +80,19 @@ const AboutMe = () => {
                   className="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-200/50 dark:border-gray-700/50 hover:shadow-lg transition-all duration-300"
                 >
                   <div className="text-3xl font-black text-[#00C896] mb-2">2+</div>
-                  <div className="text-gray-600 dark:text-gray-300 font-semibold">Années d'expérience</div>
+                  <div className="text-gray-600 dark:text-gray-300 font-semibold">{t('about.experience', 'Années d\'expérience')}</div>
                 </motion.div>
               </div>
 
               {/* CTA Button */}
               <motion.div variants={fadeInUp} className="pt-4">
                 <a
-                  href="#projects"
+                  href="/Mohammed Ali Aboukhalil CV.pdf"
+                  download="Mohammed Ali Aboukhalil CV.pdf"
                   className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#007BFF] to-[#00C896] text-white font-bold rounded-full hover:shadow-xl hover:scale-105 transition-all duration-300"
                 >
-                  <span>Voir projets</span>
+                  <FileText className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+                  <span>{t('about.downloadCV', 'Télécharger mon CV')}</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </a>
               </motion.div>
@@ -100,7 +101,7 @@ const AboutMe = () => {
               <motion.div variants={fadeInUp} className="pt-6">
                 <div className="flex gap-4">
                   <motion.a
-                    href="mailto:votre.email@example.com"
+                    href="mailto:medaliaboukhail@gmail.com"
                     whileHover={{ scale: 1.1, y: -2 }}
                     className="p-4 rounded-2xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 hover:border-red-200 dark:hover:border-red-800 transition-all duration-300"
                   >
@@ -108,7 +109,7 @@ const AboutMe = () => {
                   </motion.a>
                   
                   <motion.a
-                    href="https://linkedin.com/in/votre-profil"
+                    href="https://www.linkedin.com/in/mohammed-ali-aboukhalil-a56019329/"
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.1, y: -2 }}
@@ -118,7 +119,7 @@ const AboutMe = () => {
                   </motion.a>
                   
                   <motion.a
-                    href="https://github.com/votre-username"
+                    href="https://github.com/aboukhalil05"
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.1, y: -2 }}

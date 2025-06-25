@@ -1,35 +1,6 @@
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import ProjectCard from './ProjectCard';
-
-const projectsData = [
-  {
-    id: 1,
-    title: "Bricoloman",
-    category: "Plateforme",
-    year: "2025",
-    description: "Plateforme digitale de mise en relation entre particuliers et artisans du dépannage et de la rénovation.",
-    technologies: ["React", "Laravel", "MySQL"],
-    icon: "🔨"
-  },
-  {
-    id: 2,
-    title: "Apixel",
-    category: "POS System",
-    year: "2025",
-    description: "Système (POS – Point of Sale) de gestion des ventes.",
-    technologies: ["React", "Laravel", "MySQL", "Inertia.js"],
-    icon: "🛒"
-  },
-  {
-    id: 3,
-    title: "ISGIdocs",
-    category: "Plateforme éducative",
-    year: "2025",
-    description: "Une plateforme web pour accéder facilement aux ressources académiques.",
-    technologies: ["React", "Laravel", "MySQL"],
-    icon: "📚"
-  }
-];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -42,6 +13,38 @@ const containerVariants = {
 };
 
 export default function Projects() {
+  const { t } = useTranslation();
+  
+  const projectsData = [
+    {
+      id: 1,
+      title: t('projects.bricoloman.title', 'Bricoloman'),
+      category: t('projects.bricoloman.category', 'Plateforme'),
+      year: "2025",
+      description: t('projects.bricoloman.description', 'Plateforme digitale de mise en relation entre particuliers et artisans du dépannage et de la rénovation.'),
+      technologies: ["React", "Laravel", "MySQL"],
+      icon: "🔨"
+    },
+    {
+      id: 2,
+      title: t('projects.apixel.title', 'Apixel'),
+      category: t('projects.apixel.category', 'POS System'),
+      year: "2025",
+      description: t('projects.apixel.description', 'Système (POS – Point of Sale) de gestion des ventes.'),
+      technologies: ["React", "Laravel", "MySQL", "Inertia.js"],
+      icon: "🛒"
+    },
+    {
+      id: 3,
+      title: t('projects.isgidocs.title', 'ISGIdocs'),
+      category: t('projects.isgidocs.category', 'Plateforme éducative'),
+      year: "2025",
+      description: t('projects.isgidocs.description', 'Une plateforme web pour accéder facilement aux ressources académiques.'),
+      technologies: ["React", "Laravel", "MySQL"],
+      icon: "📚"
+    }
+  ];
+  
   return (
     <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
       
@@ -63,10 +66,10 @@ export default function Projects() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-6">
-            Mes <span className="bg-gradient-to-r from-[#007BFF] to-[#00C896] bg-clip-text text-transparent">Projets</span>
+            {t('projects.title', 'Mes')} <span className="bg-gradient-to-r from-[#007BFF] to-[#00C896] bg-clip-text text-transparent">{t('projects.titleHighlight', 'Projets')}</span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Découvrez une sélection de mes réalisations qui illustrent ma passion pour le développement web
+            {t('projects.subtitle', 'Découvrez une sélection de mes réalisations qui illustrent ma passion pour le développement web')}
           </p>
         </motion.div>
 
@@ -79,10 +82,10 @@ export default function Projects() {
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
         >
           {[
-            { label: "Projets réalisés", value: "3+", color: "from-[#007BFF] to-[#0056CC]" },
-            { label: "Technologies", value: "8+", color: "from-[#00C896] to-[#00A878]" },
-            { label: "Lignes de code", value: "10K+", color: "from-[#007BFF] to-[#00C896]" },
-            { label: "Expérience", value: "2 ans", color: "from-[#00C896] to-[#007BFF]" },
+            { label: t('projects.stats.completed', 'Projets réalisés'), value: "3+", color: "from-[#007BFF] to-[#0056CC]" },
+            { label: t('projects.stats.technologies', 'Technologies'), value: "8+", color: "from-[#00C896] to-[#00A878]" },
+            { label: t('projects.stats.linesOfCode', 'Lignes de code'), value: "10K+", color: "from-[#007BFF] to-[#00C896]" },
+            { label: t('projects.stats.experience', 'Expérience'), value: "2 ans", color: "from-[#00C896] to-[#007BFF]" },
           ].map((stat, index) => (
             <motion.div
               key={stat.label}

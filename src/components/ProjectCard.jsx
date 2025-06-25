@@ -117,7 +117,7 @@ const ProjectCard = ({ project, index }) => {
                 }}
               />
             </motion.div>
-          </div>
+            </div>
 
 
 
@@ -130,7 +130,7 @@ const ProjectCard = ({ project, index }) => {
               <div className="flex items-center gap-2 bg-white/20 backdrop-blur-md text-white text-sm px-4 py-2 rounded-full border border-white/30 font-bold">
                 <Sparkles className="w-4 h-4" />
                 {project.category}
-              </div>
+            </div>
             </motion.div>
           )}
         </div>
@@ -154,7 +154,7 @@ const ProjectCard = ({ project, index }) => {
             }}
             transition={{ duration: 0.3 }}
           >
-            {project.title}
+              {project.title}
             <motion.div
               className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-[#007BFF] to-[#00C896] rounded-full"
               initial={{ width: 0 }}
@@ -164,15 +164,15 @@ const ProjectCard = ({ project, index }) => {
           </motion.h3>
           
           {/* Year Badge */}
-          {project.year && (
+            {project.year && (
             <motion.div 
               className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-6"
               whileHover={{ scale: 1.05 }}
             >
-              <Calendar className="w-4 h-4" />
+                <Calendar className="w-4 h-4" />
               <span className="font-semibold">{project.year}</span>
             </motion.div>
-          )}
+            )}
           
           {/* Description */}
           <motion.p 
@@ -190,7 +190,7 @@ const ProjectCard = ({ project, index }) => {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
           />
-        </div>
+            </div>
 
         {/* Hover Glow Effect */}
         <motion.div
@@ -227,4 +227,4 @@ const ProjectCard = ({ project, index }) => {
   );
 };
 
-export default ProjectCard;
+export default ProjectCard; 

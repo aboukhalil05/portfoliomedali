@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { 
   Heart, 
   Github, 
@@ -16,6 +17,7 @@ import {
 } from 'lucide-react';
 
 const Footer = () => {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   const scrollToTop = () => {
@@ -23,38 +25,36 @@ const Footer = () => {
   };
 
   const quickLinks = [
-    { name: 'Accueil', href: '#hero', icon: Home, description: 'Retour à l\'accueil' },
-    { name: 'À propos', href: '#about', icon: User, description: 'Découvrez mon parcours' },
-    { name: 'Compétences', href: '#skills', icon: Zap, description: 'Mes technologies' },
-    { name: 'Projets', href: '#projects', icon: Rocket, description: 'Mes réalisations' },
-    { name: 'Contact', href: '#contact', icon: MessageCircle, description: 'Discutons ensemble' }
+    { name: t('footer.quickLinks.home', 'Accueil'), href: '#hero', icon: Home, description: t('footer.quickLinks.homeDesc', 'Retour à l\'accueil') },
+    { name: t('footer.quickLinks.about', 'À propos'), href: '#about', icon: User, description: t('footer.quickLinks.aboutDesc', 'Découvrez mon parcours') },
+    { name: t('footer.quickLinks.skills', 'Compétences'), href: '#skills', icon: Zap, description: t('footer.quickLinks.skillsDesc', 'Mes technologies') },
+    { name: t('footer.quickLinks.projects', 'Projets'), href: '#projects', icon: Rocket, description: t('footer.quickLinks.projectsDesc', 'Mes réalisations') },
+    { name: t('footer.quickLinks.contact', 'Contact'), href: '#contact', icon: MessageCircle, description: t('footer.quickLinks.contactDesc', 'Discutons ensemble') }
   ];
 
   const socialLinks = [
     {
-      name: 'GitHub',
-      href: 'https://github.com/votre-username',
+      name: t('footer.socialLinks.github', 'GitHub'),
+      href: 'https://github.com/aboukhalil05',
       icon: Github,
       color: 'hover:bg-gray-700',
-      description: 'Voir mes projets'
+      description: t('footer.socialLinks.githubDesc', 'Voir mes projets')
     },
     {
-      name: 'LinkedIn',
-      href: 'https://linkedin.com/in/votre-profil',
+      name: t('footer.socialLinks.linkedin', 'LinkedIn'),
+      href: 'https://www.linkedin.com/in/mohammed-ali-aboukhalil-a56019329/',
       icon: Linkedin,
       color: 'hover:bg-blue-600',
-      description: 'Mon réseau professionnel'
+      description: t('footer.socialLinks.linkedinDesc', 'Mon réseau professionnel')
     },
     {
-      name: 'Email',
-      href: 'mailto:aboukhalil@example.com',
+      name: t('footer.socialLinks.email', 'Email'),
+      href: 'mailto:medaliaboukhail@gmail.com',
       icon: Mail,
       color: 'hover:bg-red-500',
-      description: 'Contactez-moi'
+      description: t('footer.socialLinks.emailDesc', 'Contactez-moi')
     }
   ];
-
-
 
   return (
     <footer className="relative bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 border-t border-gray-200 dark:border-gray-700 overflow-hidden">
@@ -103,10 +103,6 @@ const Footer = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         
-
-
-
-
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
           
@@ -122,11 +118,10 @@ const Footer = () => {
               <div className="w-8 h-8 bg-gradient-to-r from-[#007BFF] to-[#00C896] rounded-lg flex items-center justify-center mr-3">
                 <User className="w-4 h-4 text-white" />
               </div>
-              À propos
+              {t('footer.about', 'À propos')}
             </h3>
             <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-              Développeur Full Stack passionné, je transforme vos idées en expériences web modernes et performantes. 
-              Spécialisé dans les technologies React, Laravel et les architectures cloud.
+              {t('footer.aboutDescription', 'Développeur Full Stack passionné, je transforme vos idées en expériences web modernes et performantes. Spécialisé dans les technologies React, Laravel et les architectures cloud.')}
             </p>
             
             {/* Contact Info */}
@@ -136,8 +131,8 @@ const Footer = () => {
                   <MapPin className="w-4 h-4 text-[#00C896]" />
                 </div>
                 <div>
-                  <div className="font-semibold">Maroc, Casablanca</div>
-                  <div className="text-sm text-gray-500">Disponible à distance</div>
+                  <div className="font-semibold">{t('footer.location', 'Maroc, Casablanca')}</div>
+                  <div className="text-sm text-gray-500">{t('footer.availability', 'Disponible à distance')}</div>
                 </div>
               </div>
               <div className="flex items-center text-gray-600 dark:text-gray-300">
@@ -145,8 +140,8 @@ const Footer = () => {
                   <Mail className="w-4 h-4 text-[#007BFF]" />
                 </div>
                 <div>
-                  <div className="font-semibold">aboukhalil@example.com</div>
-                  <div className="text-sm text-gray-500">Réponse sous 24h</div>
+                  <div className="font-semibold">{t('footer.email', 'medaliaboukhail@gmail.com')}</div>
+                  <div className="text-sm text-gray-500">{t('footer.responseTime', 'Réponse sous 24h')}</div>
                 </div>
               </div>
             </div>
@@ -164,7 +159,7 @@ const Footer = () => {
               <div className="w-8 h-8 bg-gradient-to-r from-[#007BFF] to-[#00C896] rounded-lg flex items-center justify-center mr-3">
                 <ExternalLink className="w-4 h-4 text-white" />
               </div>
-              Navigation
+              {t('footer.navigation', 'Navigation')}
             </h3>
             <div className="space-y-3">
               {quickLinks.map((link, index) => (
@@ -207,7 +202,7 @@ const Footer = () => {
               <div className="w-8 h-8 bg-gradient-to-r from-[#007BFF] to-[#00C896] rounded-lg flex items-center justify-center mr-3">
                 <Send className="w-4 h-4 text-white" />
               </div>
-              Réseaux sociaux
+              {t('footer.social', 'Réseaux sociaux')}
             </h3>
             <div className="space-y-4">
               {socialLinks.map((social, index) => (
@@ -253,12 +248,12 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex flex-col md:flex-row items-center text-gray-500 dark:text-gray-400 text-sm mb-6 md:mb-0">
               <p className="mb-2 md:mb-0 md:mr-6">
-                © {currentYear} <span className="font-semibold text-gray-700 dark:text-gray-300">Aboukhalil Mohammed Ali</span>. Tous droits réservés.
+                {t('footer.copyright', '© {year} Aboukhalil Mohammed Ali. Tous droits réservés.').replace('{year}', currentYear)}
               </p>
               <div className="flex items-center">
-                <span>Créé avec</span>
+                <span>{t('footer.madeWith', 'Créé avec')}</span>
                 <Heart className="w-4 h-4 mx-2 text-red-500 animate-pulse" />
-                <span>React & Tailwind CSS</span>
+                <span>{t('footer.technologies', 'React & Tailwind CSS')}</span>
               </div>
             </div>
             
@@ -268,7 +263,7 @@ const Footer = () => {
               whileHover={{ scale: 1.1, y: -3 }}
               whileTap={{ scale: 0.95 }}
               className="p-4 bg-gradient-to-r from-[#007BFF] to-[#00C896] rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 group"
-              aria-label="Retour en haut"
+              aria-label={t('footer.backToTop', 'Retour en haut')}
             >
               <ArrowUp className="w-5 h-5 text-white group-hover:animate-bounce" />
             </motion.button>

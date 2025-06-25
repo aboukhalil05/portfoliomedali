@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from 'react-i18next';
 import { 
   FaHtml5, 
   FaCss3Alt, 
@@ -56,16 +57,29 @@ const skillsData = [
 // Flatten all skills for "Toutes" category
 const allSkills = skillsData.flatMap(cat => cat.skills);
 
-const categories = ["Toutes", ...skillsData.map((cat) => cat.category)];
-
 export default function Skills() {
-  const [selected, setSelected] = useState("Toutes");
+  const { t } = useTranslation();
+  
+  const categories = [
+    t('skills.categories.all', 'Toutes'), 
+    t('skills.categories.frontend', 'Frontend'),
+    t('skills.categories.backend', 'Backend'), 
+    t('skills.categories.tools', 'Outils')
+  ];
+  
+  const [selected, setSelected] = useState(t('skills.categories.all', 'Toutes'));
   
   const getCurrentSkills = () => {
-    if (selected === "Toutes") {
+    if (selected === t('skills.categories.all', 'Toutes')) {
       return allSkills;
     }
-    return skillsData.find((cat) => cat.category === selected)?.skills || [];
+    const categoryMap = {
+      [t('skills.categories.frontend', 'Frontend')]: 'Frontend',
+      [t('skills.categories.backend', 'Backend')]: 'Backend',
+      [t('skills.categories.tools', 'Outils')]: 'Outils'
+    };
+    const originalCategory = categoryMap[selected];
+    return skillsData.find((cat) => cat.category === originalCategory)?.skills || [];
   };
 
   const currentSkills = getCurrentSkills();
@@ -112,10 +126,10 @@ export default function Skills() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-6">
-            Mes <span className="bg-gradient-to-r from-[#007BFF] to-[#00C896] bg-clip-text text-transparent">Compétences</span>
+            {t('skills.title', 'Mes')} <span className="bg-gradient-to-r from-[#007BFF] to-[#00C896] bg-clip-text text-transparent">{t('skills.titleHighlight', 'Compétences')}</span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Technologies et outils que je maîtrise pour créer des solutions performantes
+            {t('skills.subtitle', 'Technologies et outils que je maîtrise pour créer des solutions performantes')}
           </p>
         </motion.div>
 
@@ -160,7 +174,7 @@ export default function Skills() {
             animate="visible"
             exit="hidden"
             className={`grid gap-8 ${
-              selected === "Toutes" 
+              selected === t('skills.categories.all', 'Toutes') 
                 ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" 
                 : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
             }`}

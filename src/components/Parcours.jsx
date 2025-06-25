@@ -1,37 +1,13 @@
 import { FaGraduationCap, FaBriefcase, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
-
-const formations = [
-  {
-    title: "Technicien spécialisé en développement digital",
-    date: "2023 - 2025",
-    place: "ISGI Casablanca",
-    desc: "Formation intensive en développement web Full-Stack. Maîtrise des technologies modernes : React, Laravel, bases de données, et méthodologies agiles.",
-  },
-  {
-    title: "Baccalauréat Physique-Chimie",
-    date: "2022 - 2023",
-    place: "Académie Maurice Bucaill Casablanca",
-    desc: "Diplôme obtenu avec mention bien. Solide formation scientifique développant l'esprit logique et analytique.",
-  },
-];
-
-const experiences = [
-  {
-    title: "Stage en développement web",
-    company: "EKM Consulting",
-    date: "2025",
-    place: "Casablanca, Maroc",
-    desc: "Développement d'applications web POS (Point of Sale). Travail en équipe sur des projets réels avec des technologies modernes.",
-  },
-];
+import { useTranslation } from 'react-i18next';
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.3,
+      staggerChildren: 0.1,
     },
   },
 };
@@ -42,7 +18,7 @@ const leftItemVariants = {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 0.8,
+      duration: 0.4,
       ease: "easeOut",
     },
   },
@@ -54,7 +30,7 @@ const rightItemVariants = {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 0.8,
+      duration: 0.4,
       ease: "easeOut",
     },
   },
@@ -65,13 +41,40 @@ const timelineVariants = {
   visible: {
     height: "100%",
     transition: {
-      duration: 2,
+      duration: 0.8,
       ease: "easeInOut",
     },
   },
 };
 
 export default function Parcours() {
+  const { t } = useTranslation();
+
+  const formations = [
+    {
+      title: t('parcours.education.title1', 'Technicien spécialisé en développement digital'),
+      date: t('parcours.education.date1', '2023 - 2025'),
+      place: t('parcours.education.place1', 'ISGI Casablanca'),
+      desc: t('parcours.education.desc1', 'Formation intensive en développement web Full-Stack. Maîtrise des technologies modernes : React, Laravel, bases de données, et méthodologies agiles.'),
+    },
+    {
+      title: t('parcours.education.title2', 'Baccalauréat Physique-Chimie'),
+      date: t('parcours.education.date2', '2022 - 2023'),
+      place: t('parcours.education.place2', 'Académie Maurice Bucaill Casablanca'),
+      desc: t('parcours.education.desc2', 'Diplôme obtenu avec mention bien. Solide formation scientifique développant l\'esprit logique et analytique.'),
+    },
+  ];
+
+  const experiences = [
+    {
+      title: t('parcours.work.title1', 'Stage en développement web'),
+      company: t('parcours.work.company1', 'EKM Consulting'),
+      date: t('parcours.work.date1', '2025'),
+      place: t('parcours.work.place1', 'Casablanca, Maroc'),
+      desc: t('parcours.work.desc1', 'Développement d\'applications web POS (Point of Sale). Travail en équipe sur des projets réels avec des technologies modernes.'),
+    },
+  ];
+
   return (
     <section id="parcours" className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
       
@@ -88,14 +91,14 @@ export default function Parcours() {
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.3 }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-6">
-            Mon <span className="bg-gradient-to-r from-[#007BFF] to-[#00C896] bg-clip-text text-transparent">Parcours</span>
+            {t('parcours.title', 'Mon')} <span className="bg-gradient-to-r from-[#007BFF] to-[#00C896] bg-clip-text text-transparent">{t('parcours.titleHighlight', 'Parcours')}</span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Formation et expériences qui ont façonné mon expertise en développement
+            {t('parcours.subtitle', 'Formation et expériences qui ont façonné mon expertise en développement')}
           </p>
         </motion.div>
 
@@ -117,7 +120,7 @@ export default function Parcours() {
               >
                 <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#007BFF] to-[#0056CC] text-white rounded-full font-bold text-lg shadow-lg">
                   <FaGraduationCap className="text-xl" />
-                  Formation
+                  {t('parcours.formation', 'Formation')}
                 </div>
               </motion.div>
               
@@ -127,10 +130,10 @@ export default function Parcours() {
                   variants={leftItemVariants}
                   className="relative"
                 >
-                  <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-200/50 dark:border-gray-700/50 relative overflow-hidden group hover:shadow-2xl transition-all duration-300">
+                  <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-200/50 dark:border-gray-700/50 relative overflow-hidden group hover:shadow-2xl transition-all duration-150">
                     
                     {/* Glow effect */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/5 to-[#0056CC]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/5 to-[#0056CC]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-150 rounded-3xl" />
                     
                     {/* Content */}
                     <div className="relative z-10">
@@ -139,7 +142,7 @@ export default function Parcours() {
                           <FaGraduationCap className="text-xl" />
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-[#007BFF] dark:group-hover:text-[#00C896] transition-colors">
+                          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-[#007BFF] dark:group-hover:text-[#00C896] transition-colors duration-150">
                             {formation.title}
                           </h3>
                           <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-3">
@@ -175,7 +178,7 @@ export default function Parcours() {
               >
                 <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#00C896] to-[#00A878] text-white rounded-full font-bold text-lg shadow-lg">
                   <FaBriefcase className="text-xl" />
-                  Expérience
+                  {t('parcours.experience', 'Expérience')}
                 </div>
               </motion.div>
               
@@ -185,10 +188,10 @@ export default function Parcours() {
                   variants={rightItemVariants}
                   className="relative"
                 >
-                  <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-200/50 dark:border-gray-700/50 relative overflow-hidden group hover:shadow-2xl transition-all duration-300">
+                  <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-200/50 dark:border-gray-700/50 relative overflow-hidden group hover:shadow-2xl transition-all duration-150">
                     
                     {/* Glow effect */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#00C896]/5 to-[#00A878]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#00C896]/5 to-[#00A878]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-150 rounded-3xl" />
                     
                     {/* Content */}
                     <div className="relative z-10">
@@ -197,7 +200,7 @@ export default function Parcours() {
                           <FaBriefcase className="text-xl" />
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-[#00C896] dark:group-hover:text-[#007BFF] transition-colors">
+                          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-[#00C896] dark:group-hover:text-[#007BFF] transition-colors duration-150">
                             {experience.title}
                           </h3>
                           <p className="text-lg font-semibold text-[#00C896] dark:text-[#007BFF] mb-2">

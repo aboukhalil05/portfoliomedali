@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { 
   ArrowRight, 
   ArrowDown,
@@ -12,17 +13,20 @@ import {
   Cpu
 } from 'lucide-react';
 
-const phrases = [
-  "Aboukhalil Mohammed Ali",
-  "Développeur Fullstack"
-];
-
 const colors = [
   "from-[#007BFF] to-[#00C896]",
   "from-[#00C896] to-[#007BFF]",
   "from-[#007BFF] via-[#00C896] to-[#007BFF]",
   "from-[#00C896] via-[#007BFF] to-[#00C896]"
 ];
+
+const Hero = () => {
+  const { t } = useTranslation();
+  
+  const phrases = [
+    t('hero.name', 'Aboukhalil Mohammed Ali'),
+    t('hero.role', 'Développeur Fullstack')
+  ];
 
 // Technologies stack icons with positions
 const techStack = [
@@ -72,7 +76,6 @@ function useTypewriter(phrases, typingSpeed = 100, deletingSpeed = 50, pause = 2
   return { displayed, colorIdx };
 }
 
-const Hero = () => {
   const { displayed, colorIdx } = useTypewriter(phrases);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -173,7 +176,7 @@ const Hero = () => {
           transition={{ delay: 0.2, duration: 0.7 }}
           className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight"
         >
-          <span className="text-gray-900 dark:text-white">Je suis{" "}</span>
+          <span className="text-gray-900 dark:text-white">{t('hero.greeting', 'Je suis')}{" "}</span>
           <span
             className={`bg-gradient-to-r ${colors[colorIdx]} bg-clip-text text-transparent font-[Poppins,Inter,sans-serif] transition-colors duration-500 relative`}
             aria-label={displayed}
@@ -196,9 +199,9 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.7 }}
-          className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-10 max-w-2xl leading-relaxed"
+          className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-16 max-w-2xl leading-relaxed"
         >
-          Passionné par la création de solutions web complètes, de l'interface utilisateur aux architectures backend robustes.
+          {t('hero.description', 'Passionné par la création de solutions web complètes, de l\'interface utilisateur aux architectures backend robustes.')}
         </motion.p>
 
         {/* CTA Button */}
@@ -213,9 +216,9 @@ const Hero = () => {
             boxShadow: "0 20px 40px rgba(0, 200, 150, 0.3)" 
           }}
           whileTap={{ scale: 0.98 }}
-          className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-lg bg-gradient-to-r from-[#007BFF] to-[#00C896] text-white shadow-xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-[#00C896]/40 hover:from-[#00C896] hover:to-[#007BFF] group mb-12"
+          className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-lg bg-gradient-to-r from-[#007BFF] to-[#00C896] text-white shadow-xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-[#00C896]/40 hover:from-[#00C896] hover:to-[#007BFF] group mb-32"
         >
-          Découvrir mes projets
+          {t('hero.cta', 'Découvrir mes projets')}
           <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
         </motion.a>
 
@@ -224,7 +227,7 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-6 left-1/2 transform -translate-x-1/2"
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}
@@ -233,7 +236,7 @@ const Hero = () => {
             onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
           >
             <span className="text-sm text-gray-500 dark:text-gray-400 font-medium mb-2">
-              Défiler vers le bas
+              {t('hero.scrollDown', 'Défiler vers le bas')}
             </span>
             <div className="w-6 h-10 border-2 border-gray-300 dark:border-gray-600 rounded-full flex justify-center relative">
               <motion.div

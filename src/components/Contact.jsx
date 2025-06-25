@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useForm, ValidationError } from '@formspree/react';
+import { useTranslation } from 'react-i18next';
 import { 
   Mail, 
   User, 
@@ -18,6 +19,7 @@ import {
 } from 'lucide-react';
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [state, handleSubmit] = useForm("xovvjbrn");
   const [focusedField, setFocusedField] = useState(null);
 
@@ -34,31 +36,31 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: Mail,
-      title: "Email",
-      value: "aboukhalil@example.com",
+      title: t('contact.info.email', 'Email'),
+      value: "medaliaboukhail@gmail.com",
       color: "from-red-500 to-pink-500",
       bgColor: "bg-red-50 dark:bg-red-900/20"
     },
     {
       icon: Phone,
-      title: "Téléphone",
-      value: "+212 6XX XXX XXX",
+      title: t('contact.info.phone', 'Téléphone'),
+      value: "+212710290759",
       color: "from-green-500 to-emerald-500",
       bgColor: "bg-green-50 dark:bg-green-900/20"
     },
     {
       icon: MapPin,
-      title: "Localisation",
-      value: "Casablanca, Maroc",
+      title: t('contact.info.location', 'Localisation'),
+      value: t('contact.info.locationValue', 'Casablanca, Maroc'),
       color: "from-purple-500 to-violet-500",
       bgColor: "bg-purple-50 dark:bg-purple-900/20"
     }
   ];
 
   const socialLinks = [
-    { icon: Github, href: "https://github.com", color: "hover:bg-gray-700 hover:text-white" },
-    { icon: Linkedin, href: "https://linkedin.com", color: "hover:bg-blue-600 hover:text-white" },
-    { icon: Mail, href: "mailto:contact@example.com", color: "hover:bg-red-500 hover:text-white" }
+    { icon: Github, href: "https://github.com/aboukhalil05", color: "hover:bg-gray-700 hover:text-white" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/mohammed-ali-aboukhalil-a56019329/", color: "hover:bg-blue-600 hover:text-white" },
+    { icon: Mail, href: "mailto:medaliaboukhail@gmail.com", color: "hover:bg-red-500 hover:text-white" }
   ];
 
   if (state.succeeded) {
@@ -107,7 +109,7 @@ const Contact = () => {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="text-4xl font-black text-gray-900 dark:text-white mb-4"
             >
-              Message envoyé ! 🎉
+              {t('contact.success.title', 'Message envoyé !')} {t('contact.success.emoji', '🎉')}
             </motion.h2>
             
             <motion.p
@@ -116,7 +118,7 @@ const Contact = () => {
               transition={{ delay: 0.6, duration: 0.6 }}
               className="text-lg text-gray-600 dark:text-gray-300 mb-8"
             >
-              Merci pour votre message ! Je vous répondrai dans les plus brefs délais.
+              {t('contact.success.description', 'Merci pour votre message ! Je vous répondrai dans les plus brefs délais.')}
             </motion.p>
 
             <motion.div
@@ -260,7 +262,7 @@ const Contact = () => {
                 <div className="w-8 h-8 bg-gradient-to-r from-[#007BFF] to-[#00C896] rounded-lg flex items-center justify-center mr-3">
                   <User className="w-4 h-4 text-white" />
                 </div>
-                Informations de contact
+                {t('contact.title', 'Contactez')} {t('contact.titleHighlight', 'moi')}
               </h3>
               
               <div className="space-y-6">
@@ -289,7 +291,7 @@ const Contact = () => {
               <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
                 <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center">
                   <Heart className="w-5 h-5 text-red-500 mr-2" />
-                  Suivez-moi
+                  {t('footer.social', 'Réseaux sociaux')}
                 </h4>
                 <div className="flex gap-4">
                   {socialLinks.map((social, index) => (
@@ -322,7 +324,7 @@ const Contact = () => {
               <div className="w-8 h-8 bg-gradient-to-r from-[#007BFF] to-[#00C896] rounded-lg flex items-center justify-center mr-3">
                 <MessageSquare className="w-4 h-4 text-white" />
               </div>
-              Envoyez-moi un message
+              {t('contact.form.send', 'Envoyer le message')}
             </h3>
             
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -336,7 +338,7 @@ const Contact = () => {
                 className="relative"
               >
                 <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
-                  Nom complet
+                  {t('contact.form.name', 'Nom complet')}
                 </label>
                 <div className="relative">
                   <User className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -351,7 +353,7 @@ const Contact = () => {
                         ? 'border-[#007BFF] ring-4 ring-[#007BFF]/20' 
                         : 'border-gray-200 dark:border-gray-600 hover:border-[#00C896]'
                     }`}
-                    placeholder="Votre nom complet"
+                    placeholder={t('contact.form.namePlaceholder', 'Votre nom complet')}
                   />
                 </div>
               </motion.div>
@@ -365,13 +367,13 @@ const Contact = () => {
                 className="relative"
               >
                 <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
-                  Adresse email
-                </label>
+                  {t('contact.form.email', 'Adresse email')}
+      </label>
                 <div className="relative">
                   <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                  <input
-                    type="email"
-                    name="email"
+      <input
+        type="email" 
+        name="email"
                     required
                     onFocus={() => setFocusedField('email')}
                     onBlur={() => setFocusedField(null)}
@@ -380,13 +382,13 @@ const Contact = () => {
                         ? 'border-[#007BFF] ring-4 ring-[#007BFF]/20' 
                         : 'border-gray-200 dark:border-gray-600 hover:border-[#00C896]'
                     }`}
-                    placeholder="votre@email.com"
+                    placeholder={t('contact.form.emailPlaceholder', 'votre.email@exemple.com')}
                   />
                 </div>
-                <ValidationError 
-                  prefix="Email" 
-                  field="email"
-                  errors={state.errors}
+      <ValidationError 
+        prefix="Email" 
+        field="email"
+        errors={state.errors}
                   className="text-red-500 text-sm mt-1"
                 />
               </motion.div>
@@ -400,12 +402,12 @@ const Contact = () => {
                 className="relative"
               >
                 <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
-                  Message
+                  {t('contact.form.message', 'Message')}
                 </label>
                 <div className="relative">
                   <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-gray-400" />
-                  <textarea
-                    name="message"
+      <textarea
+        name="message"
                     rows="6"
                     required
                     onFocus={() => setFocusedField('message')}
@@ -415,13 +417,13 @@ const Contact = () => {
                         ? 'border-[#007BFF] ring-4 ring-[#007BFF]/20' 
                         : 'border-gray-200 dark:border-gray-600 hover:border-[#00C896]'
                     }`}
-                    placeholder="Décrivez votre projet ou posez votre question..."
+                    placeholder={t('contact.form.messagePlaceholder', 'Décrivez votre projet ou votre demande...')}
                   />
                 </div>
-                <ValidationError 
-                  prefix="Message" 
-                  field="message"
-                  errors={state.errors}
+      <ValidationError 
+        prefix="Message" 
+        field="message"
+        errors={state.errors}
                   className="text-red-500 text-sm mt-1"
                 />
               </motion.div>
@@ -458,12 +460,12 @@ const Contact = () => {
                       className="flex items-center gap-3"
                     >
                       <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                      <span>Envoyer le message</span>
+                      <span>{state.submitting ? t('contact.form.sending', 'Envoi en cours...') : t('contact.form.send', 'Envoyer le message')}</span>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </motion.button>
-            </form>
+    </form>
           </motion.div>
         </div>
       </div>
