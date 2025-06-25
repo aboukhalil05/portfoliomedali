@@ -5,8 +5,6 @@ import {
   Linkedin, 
   Mail, 
   MapPin, 
-  Phone, 
-  Code, 
   ArrowUp,
   ExternalLink,
   Home,
@@ -14,9 +12,7 @@ import {
   Zap,
   Rocket,
   MessageCircle,
-  Send,
-  Star,
-  Sparkles
+  Send
 } from 'lucide-react';
 
 const Footer = () => {
@@ -58,12 +54,7 @@ const Footer = () => {
     }
   ];
 
-  const stats = [
-    { label: 'Projets réalisés', value: '3+', icon: Rocket },
-    { label: 'Technologies maîtrisées', value: '8+', icon: Code },
-    { label: 'Années d\'expérience', value: '2+', icon: Star },
-    { label: 'Clients satisfaits', value: '100%', icon: Sparkles }
-  ];
+
 
   return (
     <footer className="relative bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 border-t border-gray-200 dark:border-gray-700 overflow-hidden">
@@ -112,61 +103,9 @@ const Footer = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         
-        {/* Header Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <div className="flex items-center justify-center mb-6">
-            <motion.div
-              className="w-16 h-16 bg-gradient-to-r from-[#007BFF] to-[#00C896] rounded-3xl flex items-center justify-center shadow-xl"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              transition={{ duration: 0.3 }}
-            >
-              <span className="text-white font-black text-2xl">ABK</span>
-            </motion.div>
-          </div>
-          <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-4">
-            Restons en <span className="bg-gradient-to-r from-[#007BFF] to-[#00C896] bg-clip-text text-transparent">contact</span>
-          </h2>
-          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Prêt à donner vie à vos projets ? Discutons de vos idées et créons quelque chose d'extraordinaire ensemble.
-          </p>
-        </motion.div>
 
-        {/* Stats Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
-        >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 + 0.3 }}
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200/50 dark:border-gray-700/50 hover:shadow-xl transition-all duration-300"
-            >
-              <div className="w-12 h-12 bg-gradient-to-r from-[#007BFF] to-[#00C896] rounded-2xl flex items-center justify-center mx-auto mb-3">
-                <stat.icon className="w-6 h-6 text-white" />
-              </div>
-              <div className="text-2xl font-black text-gray-900 dark:text-white mb-1">
-                {stat.value}
-              </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+
+
 
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">

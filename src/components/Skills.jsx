@@ -243,40 +243,7 @@ export default function Skills() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Stats Summary (only for "Toutes") */}
-        {selected === "Toutes" && (
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
-          >
-            {[
-              { label: "Technologies", value: allSkills.length, color: "from-[#007BFF] to-[#0056CC]" },
-              { label: "Niveau moyen", value: `${Math.round(allSkills.reduce((acc, skill) => acc + skill.level, 0) / allSkills.length)}%`, color: "from-[#00C896] to-[#00A878]" },
-              { label: "Frontend", value: skillsData[0].skills.length, color: "from-[#007BFF] to-[#00C896]" },
-              { label: "Backend", value: skillsData[1].skills.length, color: "from-[#00C896] to-[#007BFF]" },
-            ].map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                className="text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200/50 dark:border-gray-700/50"
-                whileHover={{ scale: 1.05 }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 + 0.9 }}
-              >
-                <div className={`text-3xl font-black bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}>
-                  {stat.value}
-                </div>
-                <div className="text-gray-600 dark:text-gray-400 font-semibold">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
+
       </div>
     </section>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from 'react-i18next';
-import { FileText } from 'lucide-react';
+import { FileText, Mail, Github, Linkedin, ArrowRight } from 'lucide-react';
 
 const AboutMe = () => {
   const { t } = useTranslation();
@@ -23,8 +23,14 @@ const AboutMe = () => {
   return (
     <section
       id="about"
-      className="py-20 bg-white dark:bg-gray-900 relative"
+      className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden"
     >
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-[#007BFF]/10 to-[#00C896]/10 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-[#00C896]/10 to-[#007BFF]/10 rounded-full blur-3xl" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           variants={staggerContainer}
@@ -82,22 +88,50 @@ const AboutMe = () => {
               {/* CTA Button */}
               <motion.div variants={fadeInUp} className="pt-4">
                 <a
-                  href="/cv.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#projects"
                   className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#007BFF] to-[#00C896] text-white font-bold rounded-full hover:shadow-xl hover:scale-105 transition-all duration-300"
                 >
-                  <FileText className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-                  <span>{t('about.exploreCV', 'Explorez mon CV')}</span>
-                  <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
+                  <span>Voir projets</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </a>
               </motion.div>
-            </motion.div>
-            
+
+              {/* Social Links */}
+              <motion.div variants={fadeInUp} className="pt-6">
+                <div className="flex gap-4">
+                  <motion.a
+                    href="mailto:votre.email@example.com"
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    className="p-4 rounded-2xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 hover:border-red-200 dark:hover:border-red-800 transition-all duration-300"
+                  >
+                    <Mail className="w-6 h-6" />
+                  </motion.a>
+                  
+                  <motion.a
+                    href="https://linkedin.com/in/votre-profil"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    className="p-4 rounded-2xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:border-blue-200 dark:hover:border-blue-800 transition-all duration-300"
+                  >
+                    <Linkedin className="w-6 h-6" />
+                  </motion.a>
+                  
+                  <motion.a
+                    href="https://github.com/votre-username"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    className="p-4 rounded-2xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-300"
+                  >
+                    <Github className="w-6 h-6" />
+                  </motion.a>
+                </div>
+              </motion.div>
+          </motion.div>
+
             {/* Right - Code Editor Style */}
-            <motion.div
+          <motion.div
               variants={fadeInUp}
               className="relative"
             >
@@ -181,8 +215,8 @@ const AboutMe = () => {
                 </svg>
               </motion.div>
             </motion.div>
-          </div>
-        </motion.div>
+            </div>
+          </motion.div>
       </div>
     </section>
   );

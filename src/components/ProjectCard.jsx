@@ -1,21 +1,15 @@
 import { motion } from 'framer-motion';
-import { 
-  ExternalLink, 
-  Github, 
-  Calendar,
-  Tag,
-  Eye,
-  Code2
-} from 'lucide-react';
+import { Calendar, Sparkles } from 'lucide-react';
 
 const ProjectCard = ({ project, index }) => {
   const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 50, rotateX: -15 },
     visible: {
       opacity: 1,
       y: 0,
+      rotateX: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.8,
         delay: index * 0.2,
         ease: "easeOut",
       },
@@ -28,140 +22,209 @@ const ProjectCard = ({ project, index }) => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
-      className="group relative"
+      className="group relative perspective-1000"
     >
       <motion.div
-        className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl border border-gray-200/50 dark:border-gray-700/50 overflow-hidden h-full relative transition-all duration-500 hover:shadow-2xl"
-        whileHover={{ y: -12, scale: 1.02 }}
-        transition={{ duration: 0.3 }}
+        className="relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-3xl shadow-2xl border border-gray-200/20 dark:border-gray-700/20 overflow-hidden transform-gpu"
+        whileHover={{ 
+          y: -20, 
+          rotateY: 5,
+          rotateX: 5,
+          scale: 1.02,
+          boxShadow: "0 35px 60px -12px rgba(0, 123, 255, 0.25)"
+        }}
+        transition={{ 
+          duration: 0.6,
+          ease: "easeOut"
+        }}
       >
-        {/* Project Image */}
-        <div className="relative h-64 bg-gradient-to-br from-[#007BFF] to-[#00C896] overflow-hidden">
-          {project.image ? (
-            <img 
-              src={project.image} 
-              alt={project.title}
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+        {/* Creative Header Section */}
+        <div className="relative h-72 overflow-hidden">
+          {/* Dynamic Background */}
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-br from-[#007BFF] via-[#0056CC] to-[#00C896]"
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.8 }}
+          />
+          
+          {/* Floating Geometric Shapes */}
+          <div className="absolute inset-0 overflow-hidden">
+            <motion.div 
+              className="absolute top-10 right-10 w-16 h-16 bg-white/10 rounded-full blur-sm"
+              animate={{ 
+                y: [0, -20, 0],
+                x: [0, 10, 0],
+                scale: [1, 1.2, 1]
+              }}
+              transition={{ 
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
             />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center text-white relative">
-              <div className="text-7xl group-hover:scale-110 transition-transform duration-500 relative z-10">
+            <motion.div 
+              className="absolute bottom-10 left-10 w-8 h-8 bg-white/20 rounded-lg rotate-45"
+              animate={{ 
+                rotate: [45, 225, 45],
+                scale: [1, 1.1, 1]
+              }}
+              transition={{ 
+                duration: 8,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            <motion.div 
+              className="absolute top-1/2 left-1/2 w-6 h-6 bg-white/15 rounded-full transform -translate-x-1/2 -translate-y-1/2"
+              animate={{ 
+                scale: [1, 1.5, 1],
+                opacity: [0.3, 0.8, 0.3]
+              }}
+              transition={{ 
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+          </div>
+
+          {/* Project Icon */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <motion.div
+              className="relative z-10"
+              whileHover={{ 
+                scale: 1.3,
+                rotate: 360
+              }}
+              transition={{ 
+                duration: 0.8,
+                ease: "easeInOut"
+              }}
+            >
+              <div className="text-8xl filter drop-shadow-2xl">
                 {project.icon || '💻'}
               </div>
-              {/* Decorative elements */}
-              <div className="absolute top-4 right-4 w-16 h-16 bg-white/10 rounded-full blur-xl"></div>
-              <div className="absolute bottom-4 left-4 w-12 h-12 bg-white/20 rounded-full blur-lg"></div>
-            </div>
-          )}
-          
-          {/* Overlay on hover */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          
-          {/* Tech Stack Badges */}
-          {project.technologies && (
-            <div className="absolute top-4 right-4 flex flex-wrap gap-2">
-              {project.technologies.slice(0, 3).map((tech, techIndex) => (
-                <motion.span 
-                  key={tech}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: techIndex * 0.1 }}
-                  className="bg-black/40 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full border border-white/30 font-semibold"
-                >
-                  {tech}
-                </motion.span>
-              ))}
-            </div>
-          )}
+              <motion.div
+                className="absolute -inset-8 bg-white/20 rounded-full blur-xl"
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  opacity: [0.3, 0.6, 0.3]
+                }}
+                transition={{ 
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            </motion.div>
+          </div>
+
+
 
           {/* Category Badge */}
           {project.category && (
-            <div className="absolute top-4 left-4">
-              <span className="bg-white/20 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full border border-white/30 font-bold">
+            <motion.div 
+              className="absolute top-6 left-6"
+              whileHover={{ scale: 1.1 }}
+            >
+              <div className="flex items-center gap-2 bg-white/20 backdrop-blur-md text-white text-sm px-4 py-2 rounded-full border border-white/30 font-bold">
+                <Sparkles className="w-4 h-4" />
                 {project.category}
-              </span>
-            </div>
+              </div>
+            </motion.div>
           )}
         </div>
 
-        {/* Project Content */}
-        <div className="p-8">
-          {/* Header */}
-          <div className="mb-6">
-            <h3 className="text-2xl font-black text-gray-900 dark:text-white mb-2 group-hover:text-[#007BFF] dark:group-hover:text-[#00C896] transition-colors duration-300">
-              {project.title}
-            </h3>
-            {project.year && (
-              <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                <Calendar className="w-4 h-4" />
-                <span>{project.year}</span>
-              </div>
-            )}
-          </div>
+        {/* Content Section */}
+        <div className="relative p-8">
+          {/* Decorative Line */}
+          <motion.div
+            className="absolute top-0 left-8 right-8 h-1 bg-gradient-to-r from-[#007BFF] to-[#00C896] rounded-full"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          />
+
+          {/* Project Title */}
+          <motion.h3 
+            className="text-3xl font-black text-gray-900 dark:text-white mb-4 relative"
+            whileHover={{ 
+              color: "#007BFF",
+              scale: 1.02
+            }}
+            transition={{ duration: 0.3 }}
+          >
+            {project.title}
+            <motion.div
+              className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-[#007BFF] to-[#00C896] rounded-full"
+              initial={{ width: 0 }}
+              whileHover={{ width: "100%" }}
+              transition={{ duration: 0.3 }}
+            />
+          </motion.h3>
+          
+          {/* Year Badge */}
+          {project.year && (
+            <motion.div 
+              className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-6"
+              whileHover={{ scale: 1.05 }}
+            >
+              <Calendar className="w-4 h-4" />
+              <span className="font-semibold">{project.year}</span>
+            </motion.div>
+          )}
           
           {/* Description */}
-          <p className="text-gray-600 dark:text-gray-300 text-base mb-6 leading-relaxed">
+          <motion.p 
+            className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed relative"
+            whileHover={{ color: "#374151" }}
+            transition={{ duration: 0.3 }}
+          >
             {project.description}
-          </p>
+          </motion.p>
 
-          {/* Features */}
-          {project.features && (
-            <div className="mb-6">
-              <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-3 flex items-center">
-                <Code2 className="w-4 h-4 mr-2 text-[#007BFF]" />
-                Fonctionnalités clés
-              </h4>
-              <ul className="space-y-2">
-                {project.features.slice(0, 3).map((feature, index) => (
-                  <li 
-                    key={index} 
-                    className="flex items-center text-sm text-gray-600 dark:text-gray-300"
-                  >
-                    <div className="w-2 h-2 bg-gradient-to-r from-[#007BFF] to-[#00C896] rounded-full mr-3 flex-shrink-0" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* Action Buttons */}
-          <div className="flex gap-4">
-            {project.liveUrl && (
-              <motion.a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#007BFF] to-[#00C896] text-white font-bold rounded-full hover:shadow-lg transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Eye className="w-4 h-4" />
-                Voir le projet
-              </motion.a>
-            )}
-            
-            {project.githubUrl && (
-              <motion.a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-bold rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-300 border border-gray-200 dark:border-gray-600"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Github className="w-4 h-4" />
-                GitHub
-              </motion.a>
-            )}
-          </div>
+          {/* Bottom Decorative Element */}
+          <motion.div
+            className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#007BFF]/30 to-transparent"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.8 }}
+          />
         </div>
 
-        {/* Glow Effect */}
-        <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#007BFF]/5 to-[#00C896]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+        {/* Hover Glow Effect */}
+        <motion.div
+          className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#007BFF]/5 to-[#00C896]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+          whileHover={{ 
+            boxShadow: "inset 0 0 100px rgba(0, 123, 255, 0.1)"
+          }}
+        />
+
+        {/* Sparkle Effects on Hover */}
+        <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-white rounded-full"
+              style={{
+                left: `${20 + i * 15}%`,
+                top: `${20 + (i % 2) * 30}%`,
+              }}
+              animate={{
+                scale: [0, 1, 0],
+                opacity: [0, 1, 0],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                delay: i * 0.3,
+              }}
+            />
+          ))}
+        </div>
       </motion.div>
     </motion.div>
   );
 };
 
-export default ProjectCard; 
+export default ProjectCard;

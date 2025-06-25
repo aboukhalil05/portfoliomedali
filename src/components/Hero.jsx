@@ -3,13 +3,13 @@ import { motion } from "framer-motion";
 import { Link } from 'react-router-dom';
 import { 
   ArrowRight, 
-  Github, 
-  Linkedin, 
-  Mail,
-  Terminal,
+  ArrowDown,
+  Code,
   Database,
-  Smartphone,
-  Palette
+  Globe,
+  Server,
+  Layers,
+  Cpu
 } from 'lucide-react';
 
 const phrases = [
@@ -23,6 +23,26 @@ const colors = [
   "from-[#007BFF] via-[#00C896] to-[#007BFF]",
   "from-[#00C896] via-[#007BFF] to-[#00C896]"
 ];
+
+// Technologies stack icons with positions
+const techStack = [
+  { icon: Code, name: "Frontend", position: { top: "20%", left: "15%" }, delay: 0.2 },
+  { icon: Database, name: "Backend", position: { top: "30%", right: "20%" }, delay: 0.4 },
+  { icon: Server, name: "Server", position: { bottom: "35%", left: "10%" }, delay: 0.6 },
+  { icon: Globe, name: "Web", position: { bottom: "20%", right: "15%" }, delay: 0.8 },
+  { icon: Layers, name: "API", position: { top: "15%", right: "35%" }, delay: 1.0 },
+  { icon: Cpu, name: "Logic", position: { bottom: "40%", right: "40%" }, delay: 1.2 },
+];
+
+// Floating particles
+const particles = Array.from({ length: 12 }, (_, i) => ({
+  id: i,
+  size: Math.random() * 4 + 2,
+  x: Math.random() * 100,
+  y: Math.random() * 100,
+  duration: Math.random() * 20 + 10,
+  delay: Math.random() * 5,
+}));
 
 function useTypewriter(phrases, typingSpeed = 100, deletingSpeed = 50, pause = 2000) {
   const [displayed, setDisplayed] = useState("");
@@ -54,33 +74,88 @@ function useTypewriter(phrases, typingSpeed = 100, deletingSpeed = 50, pause = 2
 
 const Hero = () => {
   const { displayed, colorIdx } = useTypewriter(phrases);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  const socialLinks = [
-    {
-      icon: Mail,
-      href: "mailto:votre.email@example.com",
-      label: "Email",
-      color: "hover:text-red-500",
-      bgColor: "hover:bg-red-50 dark:hover:bg-red-900/20"
-    },
-    {
-      icon: Linkedin,
-      href: "https://linkedin.com/in/votre-profil",
-      label: "LinkedIn",
-      color: "hover:text-blue-600",
-      bgColor: "hover:bg-blue-50 dark:hover:bg-blue-900/20"
-    },
-    {
-      icon: Github,
-      href: "https://github.com/votre-username",
-      label: "GitHub",
-      color: "hover:text-gray-900 dark:hover:text-white",
-      bgColor: "hover:bg-gray-50 dark:hover:bg-gray-800"
-    }
-  ];
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-950 transition-colors duration-500 px-4 relative">
+    <section className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-950 transition-colors duration-500 px-4 relative overflow-hidden">
+      
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Gradient Orbs */}
+        <motion.div
+          className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-br from-[#007BFF]/10 to-[#00C896]/10 rounded-full blur-3xl"
+          animate={{
+            x: [0, 50, 0],
+            y: [0, -30, 0],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-br from-[#00C896]/10 to-[#007BFF]/10 rounded-full blur-3xl"
+          animate={{
+            x: [0, -40, 0],
+            y: [0, 40, 0],
+            scale: [1, 0.9, 1],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        {/* Floating Particles */}
+        {particles.map((particle) => (
+          <motion.div
+            key={particle.id}
+            className="absolute w-1 h-1 bg-gradient-to-r from-[#007BFF] to-[#00C896] rounded-full opacity-60"
+            style={{
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+            }}
+            animate={{
+              y: [0, -100, 0],
+              opacity: [0, 1, 0],
+            }}
+            transition={{
+              duration: particle.duration,
+              repeat: Infinity,
+              delay: particle.delay,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+
+        {/* Tech Stack Icons */}
+        {techStack.map((tech, index) => (
+          <motion.div
+            key={tech.name}
+            className="absolute"
+            style={tech.position}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 0.1, scale: 1 }}
+            transition={{ delay: tech.delay, duration: 0.8 }}
+            whileHover={{ opacity: 0.3, scale: 1.2 }}
+          >
+            <tech.icon className="w-8 h-8 text-[#007BFF] dark:text-[#00C896]" />
+          </motion.div>
+        ))}
+      </div>
 
       <motion.div
         initial={{ opacity: 0, y: 40 }}
@@ -89,19 +164,7 @@ const Hero = () => {
         className="w-full max-w-4xl mx-auto flex flex-col items-center text-center relative z-10"
       >
         
-        {/* Code-like greeting */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.1, duration: 0.6 }}
-          className="mb-6 font-mono text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700"
-        >
-          <span className="text-[#007BFF]">const</span>{" "}
-          <span className="text-[#00C896]">developer</span>{" "}
-          <span className="text-gray-600 dark:text-gray-300">=</span>{" "}
-          <span className="text-orange-500">"fullstack"</span>
-          <span className="text-gray-600 dark:text-gray-300">;</span>
-        </motion.div>
+
 
         {/* Main Title with Typewriter */}
         <motion.h1
@@ -126,36 +189,7 @@ const Hero = () => {
           </span>
         </motion.h1>
 
-        {/* Skills showcase */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.7 }}
-          className="flex flex-wrap justify-center gap-4 mb-8"
-        >
-          {[
-            { icon: Terminal, label: "Frontend", color: "from-[#007BFF] to-blue-600" },
-            { icon: Database, label: "Backend", color: "from-[#00C896] to-green-600" },
-            { icon: Smartphone, label: "Mobile", color: "from-purple-500 to-pink-500" },
-            { icon: Palette, label: "UI/UX", color: "from-orange-500 to-red-500" }
-          ].map((skill, index) => (
-            <motion.div
-              key={skill.label}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.6 + index * 0.1, duration: 0.5 }}
-              whileHover={{ scale: 1.1, y: -5 }}
-              className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 rounded-full shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300"
-            >
-              <div className={`p-2 rounded-full bg-gradient-to-r ${skill.color}`}>
-                <skill.icon className="w-4 h-4 text-white" />
-              </div>
-              <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-                {skill.label}
-              </span>
-            </motion.div>
-          ))}
-        </motion.div>
+
 
         {/* Description */}
         <motion.p
@@ -185,51 +219,39 @@ const Hero = () => {
           <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
         </motion.a>
 
-        {/* Social Links */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.7 }}
-          className="flex gap-6"
-        >
-          {socialLinks.map((social, index) => (
-            <motion.a
-              key={social.label}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.4 + index * 0.1, duration: 0.5 }}
-              whileHover={{ scale: 1.2, y: -5 }}
-              whileTap={{ scale: 0.9 }}
-              className={`p-4 rounded-2xl bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 ${social.color} ${social.bgColor} transition-all duration-300 group`}
-              aria-label={social.label}
-            >
-              <social.icon className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
-            </motion.a>
-          ))}
-        </motion.div>
-
         {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-gray-300 dark:border-gray-600 rounded-full flex justify-center"
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="flex flex-col items-center cursor-pointer"
+            onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
           >
+            <span className="text-sm text-gray-500 dark:text-gray-400 font-medium mb-2">
+              Défiler vers le bas
+            </span>
+            <div className="w-6 h-10 border-2 border-gray-300 dark:border-gray-600 rounded-full flex justify-center relative">
+              <motion.div
+                animate={{ y: [0, 12, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="w-1 h-3 bg-gradient-to-b from-[#007BFF] to-[#00C896] rounded-full mt-2"
+              />
+            </div>
             <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="w-1 h-3 bg-gradient-to-b from-[#007BFF] to-[#00C896] rounded-full mt-2"
-            />
+              animate={{ y: [0, 5, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+              className="mt-2"
+            >
+              <ArrowDown className="w-5 h-5 text-[#007BFF] dark:text-[#00C896]" />
+            </motion.div>
           </motion.div>
         </motion.div>
+
       </motion.div>
     </section>
   );
