@@ -8,7 +8,8 @@ const resources = {
       nav: {
         home: 'Accueil',
         about: 'À propos',
-        formation: 'Formation',
+        formation: 'Formation', // Garde l'ancienne clé pour compatibilité
+        parcours: 'Parcours',   // Nouvelle clé
         skills: 'Compétences',
         projects: 'Projets',
         contact: 'Contact'
@@ -43,7 +44,10 @@ const resources = {
           frontend: 'Frontend',
           backend: 'Backend',
           tools: 'Outils'
-        }
+        },
+        level: 'Niveau',
+        percentage: '%',
+        proficiency: 'Maîtrise'
       },
       projects: {
         title: 'Mes',
@@ -165,11 +169,92 @@ const resources = {
       // Project Card
       'project.view': 'Voir le projet',
       'project.github': 'Code source',
+      'project.year': 'Année',
+      'project.technologies': 'Technologies',
+      'project.category': 'Catégorie',
+      'project.duration': 'Durée',
+      'project.status': 'Statut',
+      
+      // Loading
+      loading: {
+        welcome: 'Bienvenue dans mon univers',
+        loading: 'Chargement en cours...',
+        preparing: 'Préparation de quelque chose d\'incroyable',
+        initializing: 'Initialisation du portfolio',
+        almostReady: 'Presque prêt...',
+        letsGo: 'C\'est parti ! 🚀'
+      },
+      
+      // Common/Utilities
+      common: {
+        readMore: 'Lire plus',
+        readLess: 'Lire moins',
+        seeMore: 'Voir plus',
+        showAll: 'Tout afficher',
+        close: 'Fermer',
+        open: 'Ouvrir',
+        save: 'Enregistrer',
+        cancel: 'Annuler',
+        confirm: 'Confirmer',
+        yes: 'Oui',
+        no: 'Non',
+        loading: 'Chargement...',
+        error: 'Erreur',
+        success: 'Succès',
+        warning: 'Attention',
+        info: 'Information',
+        back: 'Retour',
+        next: 'Suivant',
+        previous: 'Précédent',
+        search: 'Rechercher',
+        filter: 'Filtrer',
+        sort: 'Trier',
+        reset: 'Réinitialiser',
+        apply: 'Appliquer',
+        update: 'Mettre à jour',
+        delete: 'Supprimer',
+        edit: 'Modifier',
+        view: 'Voir',
+        download: 'Télécharger',
+        upload: 'Téléverser',
+        share: 'Partager',
+        copy: 'Copier',
+        paste: 'Coller',
+        print: 'Imprimer',
+        settings: 'Paramètres',
+        help: 'Aide',
+        about: 'À propos',
+        version: 'Version',
+        language: 'Langue',
+        theme: 'Thème',
+        dark: 'Sombre',
+        light: 'Clair',
+        auto: 'Automatique'
+      },
       
       // Pages
       'page.home.title': 'Accueil',
       'page.projects.title': 'Mes Projets',
-      'page.contact.title': 'Contact'
+      'page.contact.title': 'Contact',
+      
+      // Meta/SEO
+      meta: {
+        title: 'Mohammed Ali Aboukhalil - Développeur Full Stack',
+        description: 'Développeur Full Stack passionné spécialisé en React, Laravel et technologies modernes. Créateur d\'expériences web performantes et élégantes.',
+        keywords: 'développeur, full stack, react, laravel, javascript, php, web, casablanca, maroc',
+        author: 'Mohammed Ali Aboukhalil',
+        siteName: 'Portfolio - Mohammed Ali Aboukhalil'
+      },
+      
+      // Errors
+      error: {
+        '404': 'Page non trouvée',
+        '500': 'Erreur du serveur',
+        'network': 'Erreur de connexion',
+        'generic': 'Une erreur s\'est produite',
+        'retry': 'Réessayer',
+        'goHome': 'Retour à l\'accueil'
+      }
     }
   },
   en: {
@@ -177,9 +262,10 @@ const resources = {
       nav: {
         home: 'Home',
         about: 'About',
-        formation: 'Education',
+        formation: 'Education', // Garde l'ancienne clé pour compatibilité
+        parcours: 'Education',  // Nouvelle clé
         skills: 'Skills',
-        projects: 'Projects',
+        projects: 'Projects',  
         contact: 'Contact'
       },
       hero: {
@@ -212,7 +298,10 @@ const resources = {
           frontend: 'Frontend',
           backend: 'Backend',
           tools: 'Tools'
-        }
+        },
+        level: 'Level',
+        percentage: '%',
+        proficiency: 'Proficiency'
       },
       projects: {
         title: 'My',
@@ -334,11 +423,92 @@ const resources = {
       // Project Card
       'project.view': 'View project',
       'project.github': 'Source code',
+      'project.year': 'Year',
+      'project.technologies': 'Technologies',
+      'project.category': 'Category',
+      'project.duration': 'Duration',
+      'project.status': 'Status',
+      
+      // Loading
+      loading: {
+        welcome: 'Welcome to my universe',
+        loading: 'Loading...',
+        preparing: 'Preparing something incredible',
+        initializing: 'Initializing portfolio',
+        almostReady: 'Almost ready...',
+        letsGo: 'Let\'s go! 🚀'
+      },
+      
+      // Common/Utilities
+      common: {
+        readMore: 'Read more',
+        readLess: 'Read less',
+        seeMore: 'See more',
+        showAll: 'Show all',
+        close: 'Close',
+        open: 'Open',
+        save: 'Save',
+        cancel: 'Cancel',
+        confirm: 'Confirm',
+        yes: 'Yes',
+        no: 'No',
+        loading: 'Loading...',
+        error: 'Error',
+        success: 'Success',
+        warning: 'Warning',
+        info: 'Information',
+        back: 'Back',
+        next: 'Next',
+        previous: 'Previous',
+        search: 'Search',
+        filter: 'Filter',
+        sort: 'Sort',
+        reset: 'Reset',
+        apply: 'Apply',
+        update: 'Update',
+        delete: 'Delete',
+        edit: 'Edit',
+        view: 'View',
+        download: 'Download',
+        upload: 'Upload',
+        share: 'Share',
+        copy: 'Copy',
+        paste: 'Paste',
+        print: 'Print',
+        settings: 'Settings',
+        help: 'Help',
+        about: 'About',
+        version: 'Version',
+        language: 'Language',
+        theme: 'Theme',
+        dark: 'Dark',
+        light: 'Light',
+        auto: 'Auto'
+      },
       
       // Pages
       'page.home.title': 'Home',
       'page.projects.title': 'My Projects',
-      'page.contact.title': 'Contact'
+      'page.contact.title': 'Contact',
+      
+      // Meta/SEO
+      meta: {
+        title: 'Mohammed Ali Aboukhalil - Full Stack Developer',
+        description: 'Passionate Full Stack Developer specialized in React, Laravel and modern technologies. Creator of performant and elegant web experiences.',
+        keywords: 'developer, full stack, react, laravel, javascript, php, web, casablanca, morocco',
+        author: 'Mohammed Ali Aboukhalil',
+        siteName: 'Portfolio - Mohammed Ali Aboukhalil'
+      },
+      
+      // Errors
+      error: {
+        '404': 'Page not found',
+        '500': 'Server error',
+        'network': 'Connection error',
+        'generic': 'An error occurred',
+        'retry': 'Retry',
+        'goHome': 'Go to home'
+      }
     }
   },
   ar: {
@@ -346,7 +516,8 @@ const resources = {
       nav: {
         home: 'الرئيسية',
         about: 'نبذة عني',
-        formation: 'التكوين',
+        formation: 'التكوين',  // Garde l'ancienne clé pour compatibilité
+        parcours: 'المسيرة',    // Nouvelle clé
         skills: 'المهارات',
         projects: 'المشاريع',
         contact: 'اتصل بي'
@@ -381,7 +552,10 @@ const resources = {
           frontend: 'الواجهة الأمامية',
           backend: 'الواجهة الخلفية',
           tools: 'الأدوات'
-        }
+        },
+        level: 'المستوى',
+        percentage: '%',
+        proficiency: 'الإتقان'
       },
       projects: {
         title: '',
@@ -503,11 +677,92 @@ const resources = {
       // Project Card
       'project.view': 'عرض المشروع',
       'project.github': 'الكود المصدري',
+      'project.year': 'السنة',
+      'project.technologies': 'التقنيات',
+      'project.category': 'الفئة',
+      'project.duration': 'المدة',
+      'project.status': 'الحالة',
+      
+      // Loading
+      loading: {
+        welcome: 'أهلاً بك في عالمي',
+        loading: 'جاري التحميل...',
+        preparing: 'تحضير شيء مذهل',
+        initializing: 'تهيئة الملف الشخصي',
+        almostReady: 'تقريباً جاهز...',
+        letsGo: 'لنبدأ! 🚀'
+      },
+      
+      // Common/Utilities
+      common: {
+        readMore: 'اقرأ المزيد',
+        readLess: 'اقرأ أقل',
+        seeMore: 'شاهد المزيد',
+        showAll: 'إظهار الكل',
+        close: 'إغلاق',
+        open: 'فتح',
+        save: 'حفظ',
+        cancel: 'إلغاء',
+        confirm: 'تأكيد',
+        yes: 'نعم',
+        no: 'لا',
+        loading: 'جاري التحميل...',
+        error: 'خطأ',
+        success: 'نجح',
+        warning: 'تحذير',
+        info: 'معلومات',
+        back: 'رجوع',
+        next: 'التالي',
+        previous: 'السابق',
+        search: 'بحث',
+        filter: 'تصفية',
+        sort: 'ترتيب',
+        reset: 'إعادة تعيين',
+        apply: 'تطبيق',
+        update: 'تحديث',
+        delete: 'حذف',
+        edit: 'تعديل',
+        view: 'عرض',
+        download: 'تحميل',
+        upload: 'رفع',
+        share: 'مشاركة',
+        copy: 'نسخ',
+        paste: 'لصق',
+        print: 'طباعة',
+        settings: 'الإعدادات',
+        help: 'مساعدة',
+        about: 'حول',
+        version: 'الإصدار',
+        language: 'اللغة',
+        theme: 'المظهر',
+        dark: 'داكن',
+        light: 'فاتح',
+        auto: 'تلقائي'
+      },
       
       // Pages
       'page.home.title': 'الرئيسية',
       'page.projects.title': 'مشاريعي',
-      'page.contact.title': 'اتصل بنا'
+      'page.contact.title': 'اتصل بنا',
+      
+      // Meta/SEO
+      meta: {
+        title: 'محمد علي أبوخليل - مطور ويب متكامل',
+        description: 'مطور ويب متكامل شغوف متخصص في React و Laravel والتقنيات الحديثة. مبدع تجارب ويب عالية الأداء وأنيقة.',
+        keywords: 'مطور، ويب متكامل، react، laravel، javascript، php، ويب، الدار البيضاء، المغرب',
+        author: 'محمد علي أبوخليل',
+        siteName: 'الملف الشخصي - محمد علي أبوخليل'
+      },
+      
+      // Errors
+      error: {
+        '404': 'الصفحة غير موجودة',
+        '500': 'خطأ في الخادم',
+        'network': 'خطأ في الاتصال',
+        'generic': 'حدث خطأ',
+        'retry': 'إعادة المحاولة',
+        'goHome': 'العودة للرئيسية'
+      }
     }
   }
 };

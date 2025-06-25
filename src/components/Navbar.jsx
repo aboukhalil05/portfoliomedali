@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { MdDarkMode, MdLightMode } from 'react-icons/md';
@@ -16,7 +16,7 @@ export default function Navbar() {
   const navLinks = [
     { label: t('nav.home', 'Accueil'), to: '#home' },
     { label: t('nav.about', 'À propos'), to: '#about' },
-    { label: t('nav.formation', 'Formation'), to: '#parcours' },
+    { label: t('nav.parcours', 'Parcours'), to: '#parcours' },
     { label: t('nav.skills', 'Compétences'), to: '#skills' },
     { label: t('nav.projects', 'Projets'), to: '#projects' },
     { label: t('nav.contact', 'Contact'), to: '#contact' },
@@ -28,6 +28,33 @@ export default function Navbar() {
   const [activeLink, setActiveLink] = useState('#home');
   const [hoveredLink, setHoveredLink] = useState(null);
   const [hoveredMobileLink, setHoveredMobileLink] = useState(null);
+
+  // Détection automatique de la section visible
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'parcours', 'skills', 'projects', 'contact'];
+      const scrollPosition = window.scrollY + 100; // Offset pour une meilleure détection
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveLink(`#${section}`);
+            break;
+          }
+        }
+      }
+    };
+
+    // Ajouter l'écouteur d'événement scroll
+    window.addEventListener('scroll', handleScroll);
+    // Vérifier la position initiale
+    handleScroll();
+
+    // Nettoyer l'écouteur
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Theme toggle
   const toggleTheme = () => {
@@ -44,7 +71,7 @@ export default function Navbar() {
   };
 
   // Active link check
-  const getActive = (to) => window.location.hash === to || activeLink === to;
+  const getActive = (to) => activeLink === to;
 
   // Handle link click
   const handleLinkClick = (to) => {

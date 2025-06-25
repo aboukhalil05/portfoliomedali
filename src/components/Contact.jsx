@@ -15,7 +15,9 @@ import {
   Linkedin,
   Heart,
   Zap,
-  Star
+  Star,
+  ThumbsUp,
+  PartyPopper
 } from 'lucide-react';
 
 const Contact = () => {
@@ -63,69 +65,197 @@ const Contact = () => {
     { icon: Mail, href: "mailto:medaliaboukhail@gmail.com", color: "hover:bg-red-500 hover:text-white" }
   ];
 
+  // Try to load like image, fallback to thumbs up icon
+  const likeImageSrc = '/src/assets/images/like.png';
+  const [imageError, setImageError] = useState(false);
+
   if (state.succeeded) {
     return (
-      <section id="contact" className="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900/20 relative overflow-hidden">
+      <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        
+        {/* Enhanced Background Effects for Success */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {particles.map((particle) => (
+          {/* Celebration Particles */}
+          {Array.from({ length: 25 }).map((_, i) => (
             <motion.div
-              key={particle.id}
-              className="absolute w-1 h-1 bg-gradient-to-r from-[#007BFF] to-[#00C896] rounded-full opacity-40"
-              style={{ left: `${particle.x}%`, top: `${particle.y}%` }}
+              key={i}
+              className="absolute w-2 h-2 rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                backgroundColor: i % 3 === 0 ? '#007BFF' : i % 3 === 1 ? '#00C896' : '#FFD700',
+              }}
               animate={{
-                y: [0, -50, 0],
+                y: [0, -100, 0],
+                x: [0, Math.random() * 60 - 30, 0],
                 opacity: [0, 1, 0],
-                scale: [0, 1, 0]
+                scale: [0, 1.5, 0],
+                rotate: [0, 360, 720],
               }}
               transition={{
-                duration: particle.duration,
+                duration: 3,
                 repeat: Infinity,
-                delay: particle.delay,
+                delay: Math.random() * 2,
                 ease: "easeInOut",
               }}
             />
           ))}
         </div>
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <div className="max-w-lg w-full relative z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="bg-white dark:bg-gray-800 rounded-3xl p-12 shadow-2xl border border-gray-200/50 dark:border-gray-700/50"
+            className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-gray-200/50 dark:border-gray-700/50 relative overflow-hidden"
           >
+            
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-5">
+              <div className="absolute top-4 left-4 w-8 h-8 bg-green-500 rounded-full"></div>
+              <div className="absolute top-8 right-8 w-6 h-6 bg-blue-500 rounded-full"></div>
+              <div className="absolute bottom-8 left-8 w-10 h-10 bg-yellow-500 rounded-full"></div>
+              <div className="absolute bottom-4 right-4 w-4 h-4 bg-green-500 rounded-full"></div>
+            </div>
+
+            {/* Success Icon with Like Image */}
             <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="w-20 h-20 bg-gradient-to-r from-[#007BFF] to-[#00C896] rounded-full flex items-center justify-center mx-auto mb-6"
+              initial={{ scale: 0, rotate: -180 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ delay: 0.2, duration: 0.8, type: "spring", bounce: 0.6 }}
+              className="relative w-20 h-20 mx-auto mb-6"
             >
-              <CheckCircle className="w-10 h-10 text-white" />
+              {/* Animated Ring */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-0 rounded-full bg-gradient-to-r from-green-400 via-blue-500 to-green-400 p-1"
+              >
+                <div className="w-full h-full rounded-full bg-white dark:bg-gray-800"></div>
+              </motion.div>
+              
+              {/* Like Image or Fallback */}
+              <div className="absolute inset-2 rounded-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center shadow-xl">
+                {!imageError ? (
+                  <img 
+                    src={likeImageSrc} 
+                    alt="Like" 
+                    className="w-10 h-10 object-contain"
+                    onError={() => setImageError(true)}
+                  />
+                ) : (
+                  <ThumbsUp className="w-10 h-10 text-white" />
+                )}
+              </div>
+              
+              {/* Sparkle Effects */}
+              {Array.from({ length: 4 }).map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-1.5 h-1.5 bg-yellow-400 rounded-full"
+                  style={{
+                    left: `${25 + i * 20}%`,
+                    top: `${15 + (i % 2) * 70}%`,
+                  }}
+                  animate={{
+                    scale: [0, 1, 0],
+                    opacity: [0, 1, 0],
+                    rotate: [0, 180, 360],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    delay: i * 0.3,
+                    ease: "easeInOut",
+                  }}
+                />
+              ))}
             </motion.div>
             
+            {/* Success Title */}
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="text-4xl font-black text-gray-900 dark:text-white mb-4"
+              className="text-3xl font-black text-gray-900 dark:text-white mb-4 text-center flex items-center justify-center gap-3"
             >
-              {t('contact.success.title', 'Message envoyé !')} {t('contact.success.emoji', '🎉')}
+              {t('contact.success.title', 'Message envoyé !')}
+              <motion.span
+                animate={{ rotate: [0, 15, -15, 0] }}
+                transition={{ duration: 1, repeat: Infinity, repeatDelay: 2 }}
+              >
+                🎉
+              </motion.span>
             </motion.h2>
             
+            {/* Success Description */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
-              className="text-lg text-gray-600 dark:text-gray-300 mb-8"
+              className="text-base text-gray-600 dark:text-gray-300 mb-6 leading-relaxed text-center"
             >
               {t('contact.success.description', 'Merci pour votre message ! Je vous répondrai dans les plus brefs délais.')}
             </motion.p>
 
+            {/* Fun Stats */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.6 }}
-              className="flex justify-center gap-4"
+              className="grid grid-cols-3 gap-4 mb-6"
+            >
+              <div className="text-center">
+                <motion.div
+                  animate={{ scale: [1, 1.1, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="text-xl font-bold text-green-500"
+                >
+                  ✓
+                </motion.div>
+                <p className="text-xs text-gray-500">Envoyé</p>
+              </div>
+              <div className="text-center">
+                <motion.div
+                  animate={{ rotate: [0, 360] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                  className="text-xl font-bold text-blue-500"
+                >
+                  ⚡
+                </motion.div>
+                <p className="text-xs text-gray-500">Rapide</p>
+              </div>
+              <div className="text-center">
+                <motion.div
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                  className="text-xl font-bold text-yellow-500"
+                >
+                  ⭐
+                </motion.div>
+                <p className="text-xs text-gray-500">Parfait</p>
+              </div>
+            </motion.div>
+
+            {/* Close Button */}
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.0, duration: 0.6 }}
+              onClick={() => window.location.reload()}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-full bg-gradient-to-r from-[#007BFF] to-[#00C896] text-white font-bold py-3 px-6 rounded-2xl transition-all duration-300 shadow-lg"
+            >
+              Parfait ! 👍
+            </motion.button>
+
+            {/* Social Links */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, duration: 0.6 }}
+              className="flex justify-center gap-3 mt-4"
             >
               {socialLinks.map((social, index) => (
                 <motion.a
@@ -133,16 +263,22 @@ const Contact = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  className={`p-3 rounded-2xl bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 ${social.color} transition-all duration-300`}
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 1.4 + index * 0.1, type: "spring", bounce: 0.6 }}
+                  whileHover={{ 
+                    scale: 1.2, 
+                    y: -2
+                  }}
+                  className={`p-2 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 ${social.color} transition-all duration-300 shadow-md`}
                 >
-                  <social.icon className="w-6 h-6" />
+                  <social.icon className="w-4 h-4" />
                 </motion.a>
               ))}
             </motion.div>
           </motion.div>
         </div>
-      </section>
+      </div>
     );
   }
 
@@ -368,12 +504,12 @@ const Contact = () => {
               >
                 <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
                   {t('contact.form.email', 'Adresse email')}
-      </label>
+                </label>
                 <div className="relative">
                   <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-      <input
-        type="email" 
-        name="email"
+                  <input
+                    type="email" 
+                    name="email"
                     required
                     onFocus={() => setFocusedField('email')}
                     onBlur={() => setFocusedField(null)}
@@ -385,10 +521,10 @@ const Contact = () => {
                     placeholder={t('contact.form.emailPlaceholder', 'votre.email@exemple.com')}
                   />
                 </div>
-      <ValidationError 
-        prefix="Email" 
-        field="email"
-        errors={state.errors}
+                <ValidationError 
+                  prefix="Email" 
+                  field="email"
+                  errors={state.errors}
                   className="text-red-500 text-sm mt-1"
                 />
               </motion.div>
@@ -406,8 +542,8 @@ const Contact = () => {
                 </label>
                 <div className="relative">
                   <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-gray-400" />
-      <textarea
-        name="message"
+                  <textarea
+                    name="message"
                     rows="6"
                     required
                     onFocus={() => setFocusedField('message')}
@@ -420,10 +556,10 @@ const Contact = () => {
                     placeholder={t('contact.form.messagePlaceholder', 'Décrivez votre projet ou votre demande...')}
                   />
                 </div>
-      <ValidationError 
-        prefix="Message" 
-        field="message"
-        errors={state.errors}
+                <ValidationError 
+                  prefix="Message" 
+                  field="message"
+                  errors={state.errors}
                   className="text-red-500 text-sm mt-1"
                 />
               </motion.div>
@@ -465,7 +601,7 @@ const Contact = () => {
                   )}
                 </AnimatePresence>
               </motion.button>
-    </form>
+            </form>
           </motion.div>
         </div>
       </div>
