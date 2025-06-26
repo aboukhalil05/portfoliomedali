@@ -25,7 +25,7 @@ const Footer = () => {
   };
 
   const quickLinks = [
-    { name: t('footer.quickLinks.home', 'Accueil'), href: '#hero', icon: Home, description: t('footer.quickLinks.homeDesc', 'Retour à l\'accueil') },
+    { name: t('footer.quickLinks.home', 'Accueil'), href: '#home', icon: Home, description: t('footer.quickLinks.homeDesc', 'Retour à l\'accueil') },
     { name: t('footer.quickLinks.about', 'À propos'), href: '#about', icon: User, description: t('footer.quickLinks.aboutDesc', 'Découvrez mon parcours') },
     { name: t('footer.quickLinks.skills', 'Compétences'), href: '#skills', icon: Zap, description: t('footer.quickLinks.skillsDesc', 'Mes technologies') },
     { name: t('footer.quickLinks.projects', 'Projets'), href: '#projects', icon: Rocket, description: t('footer.quickLinks.projectsDesc', 'Mes réalisations') },

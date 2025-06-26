@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from 'react-i18next';
 import { 
@@ -18,7 +18,8 @@ import {
   SiMysql, 
   SiMongodb, 
   SiScrumalliance, 
-  SiSonarqube 
+  SiSonarqube,
+  SiInertia
 } from "react-icons/si";
 
 const skillsData = [
@@ -29,6 +30,7 @@ const skillsData = [
       { name: "CSS", icon: <FaCss3Alt className="text-blue-500" />, level: 90 },
       { name: "JavaScript", icon: <FaJs className="text-yellow-400" />, level: 88 },
       { name: "React", icon: <FaReact className="text-cyan-400" />, level: 85 },
+      { name: "Inertia.js", icon: <SiInertia className="text-purple-600" />, level: 82 },
       { name: "Tailwind", icon: <SiTailwindcss className="text-teal-400" />, level: 92 },
       { name: "Bootstrap", icon: <FaBootstrap className="text-purple-600" />, level: 87 },
     ],
@@ -60,25 +62,27 @@ const allSkills = skillsData.flatMap(cat => cat.skills);
 export default function Skills() {
   const { t } = useTranslation();
   
-  const categories = [
-    t('skills.categories.all', 'Toutes'), 
-    t('skills.categories.frontend', 'Frontend'),
-    t('skills.categories.backend', 'Backend'), 
-    t('skills.categories.tools', 'Outils')
+  // Utiliser des clés constantes au lieu des traductions pour l'état
+  const [selectedKey, setSelectedKey] = useState('all');
+  
+  // Définir les catégories avec leurs clés et traductions
+  const categoryConfig = [
+    { key: 'all', label: t('skills.categories.all', 'Toutes') },
+    { key: 'frontend', label: t('skills.categories.frontend', 'Frontend') },
+    { key: 'backend', label: t('skills.categories.backend', 'Backend') },
+    { key: 'tools', label: t('skills.categories.tools', 'Outils') }
   ];
   
-  const [selected, setSelected] = useState(t('skills.categories.all', 'Toutes'));
-  
   const getCurrentSkills = () => {
-    if (selected === t('skills.categories.all', 'Toutes')) {
+    if (selectedKey === 'all') {
       return allSkills;
     }
     const categoryMap = {
-      [t('skills.categories.frontend', 'Frontend')]: 'Frontend',
-      [t('skills.categories.backend', 'Backend')]: 'Backend',
-      [t('skills.categories.tools', 'Outils')]: 'Outils'
+      'frontend': 'Frontend',
+      'backend': 'Backend',
+      'tools': 'Outils'
     };
-    const originalCategory = categoryMap[selected];
+    const originalCategory = categoryMap[selectedKey];
     return skillsData.find((cat) => cat.category === originalCategory)?.skills || [];
   };
 
@@ -141,26 +145,26 @@ export default function Skills() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="flex flex-wrap justify-center gap-4 mb-12"
         >
-          {categories.map((cat) => (
+          {categoryConfig.map((category) => (
             <motion.button
-              key={cat}
-              onClick={() => setSelected(cat)}
+              key={category.key}
+              onClick={() => setSelectedKey(category.key)}
               className={`relative px-6 py-3 rounded-full font-semibold transition-all duration-300 overflow-hidden ${
-                selected === cat
+                selectedKey === category.key
                   ? "text-white shadow-lg scale-105"
                   : "text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:shadow-md hover:scale-105 border border-gray-200 dark:border-gray-700"
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {selected === cat && (
+              {selectedKey === category.key && (
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-[#007BFF] to-[#00C896]"
                   layoutId="activeFilter"
                   transition={{ duration: 0.3 }}
                 />
               )}
-              <span className="relative z-10">{cat}</span>
+              <span className="relative z-10">{category.label}</span>
             </motion.button>
           ))}
         </motion.div>
@@ -168,20 +172,20 @@ export default function Skills() {
         {/* Skills Grid */}
         <AnimatePresence mode="wait">
           <motion.div
-            key={selected}
+            key={selectedKey}
             variants={containerVariants}
             initial="hidden"
             animate="visible"
             exit="hidden"
             className={`grid gap-8 ${
-              selected === t('skills.categories.all', 'Toutes') 
+              selectedKey === 'all' 
                 ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" 
                 : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
             }`}
           >
             {currentSkills.map((skill, index) => (
               <motion.div
-                key={`${skill.name}-${selected}`}
+                key={`${skill.name}-${selectedKey}`}
                 variants={itemVariants}
                 className="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200/50 dark:border-gray-700/50 relative overflow-hidden"
                 whileHover={{ y: -8 }}

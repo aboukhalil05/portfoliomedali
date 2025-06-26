@@ -103,12 +103,17 @@ const resources = {
       contact: {
         title: 'Contactez',
         titleHighlight: 'moi',
-        subtitle: 'N\'hésitez pas à me contacter pour discuter de vos projets',
+        subtitle: 'Vous avez un projet en tête ? Discutons de vos idées et créons quelque chose d\'extraordinaire ensemble !',
+        contactInfo: 'Informations de contact',
+        sendMessage: 'Envoyez-moi un message',
         form: {
+          firstName: 'Prénom',
+          lastName: 'Nom',
           name: 'Nom complet',
           namePlaceholder: 'Votre nom complet',
-          email: 'Adresse email',
+          email: 'Email',
           emailPlaceholder: 'votre.email@exemple.com',
+          subject: 'Sujet',
           message: 'Message',
           messagePlaceholder: 'Décrivez votre projet ou votre demande...',
           send: 'Envoyer le message',
@@ -123,7 +128,9 @@ const resources = {
           email: 'Email',
           phone: 'Téléphone',
           location: 'Localisation',
-          locationValue: 'Casablanca, Maroc'
+          locationValue: 'Maroc, Casablanca',
+          emailValue: 'contact@portfolio.com',
+          phoneValue: '+33 1 23 45 67 89'
         }
       },
       footer: {
@@ -357,12 +364,17 @@ const resources = {
       contact: {
         title: 'Contact',
         titleHighlight: 'me',
-        subtitle: 'Feel free to contact me to discuss your projects',
+        subtitle: 'Do you have a project in mind? Let\'s discuss your ideas and create something extraordinary together!',
+        contactInfo: 'Contact Information',
+        sendMessage: 'Send me a message',
         form: {
+          firstName: 'First Name',
+          lastName: 'Last Name',
           name: 'Full name',
           namePlaceholder: 'Your full name',
-          email: 'Email address',
+          email: 'Email',
           emailPlaceholder: 'your.email@example.com',
+          subject: 'Subject',
           message: 'Message',
           messagePlaceholder: 'Describe your project or request...',
           send: 'Send message',
@@ -377,7 +389,9 @@ const resources = {
           email: 'Email',
           phone: 'Phone',
           location: 'Location',
-          locationValue: 'Casablanca, Morocco'
+          locationValue: 'Morocco, Casablanca',
+          emailValue: 'contact@portfolio.com',
+          phoneValue: '+33 1 23 45 67 89'
         }
       },
       footer: {
@@ -611,12 +625,17 @@ const resources = {
       contact: {
         title: 'تواصل',
         titleHighlight: 'معي',
-        subtitle: 'لا تتردد في التواصل معي لمناقشة مشاريعك',
+        subtitle: 'هل لديك مشروع في ذهنك؟ لنناقش أفكارك ونبدع شيئاً استثنائياً معاً!',
+        contactInfo: 'معلومات التواصل',
+        sendMessage: 'أرسل لي رسالة',
         form: {
+          firstName: 'الاسم الأول',
+          lastName: 'اسم العائلة',
           name: 'الاسم الكامل',
           namePlaceholder: 'اسمك الكامل',
           email: 'البريد الإلكتروني',
           emailPlaceholder: 'your.email@example.com',
+          subject: 'الموضوع',
           message: 'الرسالة',
           messagePlaceholder: 'صف مشروعك أو طلبك...',
           send: 'إرسال الرسالة',
@@ -631,7 +650,9 @@ const resources = {
           email: 'البريد الإلكتروني',
           phone: 'الهاتف',
           location: 'الموقع',
-          locationValue: 'الدار البيضاء، المغرب'
+          locationValue: 'المغرب، الدار البيضاء',
+          emailValue: 'contact@portfolio.com',
+          phoneValue: '+33 1 23 45 67 89'
         }
       },
       footer: {

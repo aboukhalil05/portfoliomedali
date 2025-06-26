@@ -95,7 +95,7 @@ function useTypewriter(phrases, typingSpeed = 100, deletingSpeed = 50, pause = 2
   const profileImageSrc = '/src/assets/images/profile.png';
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-950 transition-colors duration-500 px-4 relative overflow-hidden pb-20">
+    <section id="home" className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-950 transition-colors duration-500 px-4 relative overflow-hidden pb-20">
       
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -393,12 +393,12 @@ function useTypewriter(phrases, typingSpeed = 100, deletingSpeed = 50, pause = 2
         </div>
       </div>
 
-      {/* Scroll indicator - Moved lower and visible on all screens */}
+      {/* Scroll indicator - Positioned higher and visible on all screens */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-20"
+        className="absolute bottom-28 left-1/2 transform -translate-x-1/2 z-20"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}

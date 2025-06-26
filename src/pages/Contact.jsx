@@ -21,10 +21,10 @@ function Contact() {
           className="text-center mb-16"
         >
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Contactez-moi</span>
+            {t('contact.title')} <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">{t('contact.titleHighlight')}</span>
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            N'hésitez pas à me contacter pour discuter de vos projets
+            {t('contact.subtitle')}
           </p>
         </motion.div>
 
@@ -38,7 +38,7 @@ function Contact() {
           >
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
               <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
-                Informations de contact
+                {t('contact.contactInfo')}
               </h2>
               
               <div className="space-y-6">
@@ -47,8 +47,8 @@ function Contact() {
                     <Mail className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="font-medium text-gray-900 dark:text-white">Email</h3>
-                    <p className="text-gray-600 dark:text-gray-300">contact@portfolio.com</p>
+                    <h3 className="font-medium text-gray-900 dark:text-white">{t('contact.info.email')}</h3>
+                    <p className="text-gray-600 dark:text-gray-300">{t('contact.info.emailValue')}</p>
                   </div>
                 </div>
                 
@@ -57,8 +57,8 @@ function Contact() {
                     <Phone className="w-6 h-6 text-green-600" />
                   </div>
                   <div>
-                    <h3 className="font-medium text-gray-900 dark:text-white">Téléphone</h3>
-                    <p className="text-gray-600 dark:text-gray-300">+33 1 23 45 67 89</p>
+                    <h3 className="font-medium text-gray-900 dark:text-white">{t('contact.info.phone')}</h3>
+                    <p className="text-gray-600 dark:text-gray-300">{t('contact.info.phoneValue')}</p>
                   </div>
                 </div>
                 
@@ -67,8 +67,8 @@ function Contact() {
                     <MapPin className="w-6 h-6 text-purple-600" />
                   </div>
                   <div>
-                    <h3 className="font-medium text-gray-900 dark:text-white">Localisation</h3>
-                    <p className="text-gray-600 dark:text-gray-300">Paris, France</p>
+                    <h3 className="font-medium text-gray-900 dark:text-white">{t('contact.info.location')}</h3>
+                    <p className="text-gray-600 dark:text-gray-300">{t('contact.info.locationValue')}</p>
                   </div>
                 </div>
               </div>
@@ -83,14 +83,14 @@ function Contact() {
             className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg"
           >
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
-              Envoyez-moi un message
+              {t('contact.sendMessage')}
             </h2>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Prénom
+                    {t('contact.form.firstName')}
                   </label>
                   <input
                     type="text"
@@ -101,7 +101,7 @@ function Contact() {
                 </div>
                 <div>
                   <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Nom
+                    {t('contact.form.lastName')}
                   </label>
                   <input
                     type="text"
@@ -114,7 +114,7 @@ function Contact() {
               
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Email
+                  {t('contact.form.email')}
                 </label>
                 <input
                   type="email"
@@ -126,7 +126,7 @@ function Contact() {
               
               <div>
                 <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Sujet
+                  {t('contact.form.subject')}
                 </label>
                 <input
                   type="text"
@@ -138,7 +138,7 @@ function Contact() {
               
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Message
+                  {t('contact.form.message')}
                 </label>
                 <textarea
                   id="message"
@@ -153,7 +153,7 @@ function Contact() {
                 className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center space-x-2"
               >
                 <Send className="w-5 h-5" />
-                <span>Envoyer le message</span>
+                <span>{t('contact.form.send')}</span>
               </button>
             </form>
           </motion.div>
