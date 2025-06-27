@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useForm, ValidationError } from '@formspree/react';
 import { useTranslation } from 'react-i18next';
+
+// Import like image
+import likeImage from '../assets/images/like.png';
 import { 
   Mail, 
   User, 
@@ -126,7 +129,7 @@ const Contact = () => {
                 <div className="w-full h-full bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center shadow-xl">
                   {!imageError ? (
                     <img 
-                      src="/src/assets/images/like.png" 
+                      src={likeImage} 
                       alt="Success" 
                       className="w-12 h-12 object-contain"
                       onError={() => setImageError(true)}

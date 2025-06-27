@@ -9,7 +9,6 @@ import {
   FaBootstrap, 
   FaLaravel, 
   FaGitAlt, 
-  FaJira,
   FaPython,
   FaPhp
 } from "react-icons/fa";
@@ -19,7 +18,8 @@ import {
   SiMongodb, 
   SiScrumalliance, 
   SiSonarqube,
-  SiInertia
+  SiInertia,
+  SiJira
 } from "react-icons/si";
 
 const skillsData = [
@@ -49,7 +49,7 @@ const skillsData = [
     category: "Outils",
     skills: [
       { name: "Git", icon: <FaGitAlt className="text-orange-600" />, level: 90 },
-      { name: "Jira", icon: <FaJira className="text-blue-700" />, level: 80 },
+      { name: "Jira", icon: <SiJira className="text-blue-700" />, level: 80 },
       { name: "Scrum", icon: <SiScrumalliance className="text-green-400" />, level: 85 },
       { name: "SonarQube", icon: <SiSonarqube className="text-yellow-500" />, level: 75 },
     ],

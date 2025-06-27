@@ -92,7 +92,7 @@ function useTypewriter(phrases, typingSpeed = 100, deletingSpeed = 50, pause = 2
   }, []);
 
   // Try to load profile image, fallback to placeholder if not found
-  const profileImageSrc = '/src/assets/images/profile.png';
+  const profileImageSrc = profileImage;
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-950 transition-colors duration-500 px-4 relative overflow-hidden pb-20">

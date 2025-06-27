@@ -3,6 +3,11 @@ import { Calendar, Sparkles, Code2, Database, Layers } from 'lucide-react';
 import { FaReact, FaLaravel, FaDatabase } from 'react-icons/fa';
 import { SiInertia, SiMysql } from 'react-icons/si';
 
+// Import images
+import apixelImage from '../assets/images/apixel.png';
+import bricolomanImage from '../assets/images/bricoloman.png';
+import isgiImage from '../assets/images/isgi.png';
+
 const ProjectCard = ({ project, index }) => {
   const cardVariants = {
     hidden: { opacity: 0, y: 50, rotateX: -15 },
@@ -23,15 +28,15 @@ const ProjectCard = ({ project, index }) => {
     const title = projectTitle?.toLowerCase();
     // Support pour Apixel en toutes langues
     if (title?.includes('apixel') || title?.includes('أبيكسل')) {
-      return '/src/assets/images/apixel.png';
+      return apixelImage;
     } 
     // Support pour Bricoloman en toutes langues
     else if (title?.includes('bricoloman') || title?.includes('بريكولومان')) {
-      return '/src/assets/images/bricoloman.png';
+      return bricolomanImage;
     } 
     // Support pour ISGIdocs en toutes langues
     else if (title?.includes('isgi') || title?.includes('آي إس جي آي')) {
-      return '/src/assets/images/isgi.png';
+      return isgiImage;
     }
     return null;
   };
